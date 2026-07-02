@@ -1,0 +1,474 @@
+{
+  "meta": {
+    "version": "2.0",
+    "title": "Foundation House Capital — Executive Operating System",
+    "briefSource": "FHC/Atlas Executive Brief for Claude (Final), July 2026"
+  },
+
+  "overview": {
+    "phase": "Foundation Phase (2026–2029)",
+    "objective": "The objective is not to build Atlas yet — it is to become the man capable of building Atlas. Capability acquisition precedes scale.",
+    "quarter": "Q3 2026",
+    "theme": "Stop sharpening the ax. Start chopping the tree.",
+    "readiness": 62,
+    "priority": "Ship Episode 1: script → voiceover → edit → publish.",
+    "bottleneck": "Episode 1 script not yet finalized — everything downstream in FSM waits on it.",
+    "risk": "Making Atlas more sophisticated instead of making the steward more capable.",
+    "unlock": "Episode 1 published + Mercury checking open + first full week of the daily deep work block.",
+    "daysSinceReview": 4,
+    "statuses": [
+      {"label": "FSM — Episode 1", "state": "warn"},
+      {"label": "FHC — Financial Infra", "state": "warn"},
+      {"label": "Capability — Deep Work", "state": "idle"},
+      {"label": "Navy", "state": "ok"},
+      {"label": "Fitness", "state": "ok"},
+      {"label": "Finances", "state": "warn"}
+    ]
+  },
+
+  "philosophy": {
+    "chain": [
+      {"n": "01", "title": "Source", "desc": "God. The origin of everything stewarded. Nothing below this layer is owned — only entrusted."},
+      {"n": "02", "title": "Stewardship", "desc": "The purpose. Stewardship precedes accumulation. Money is a tool. Freedom is the outcome. Stewardship is the purpose."},
+      {"n": "03", "title": "Foundation House Capital", "desc": "The vehicle. A house built to steward capital across generations — its greatest asset will never be its portfolio, but the quality of the people entrusted to steward it."},
+      {"n": "04", "title": "Atlas", "desc": "The externalization of Antoine's decision framework. It stewards attention, capital, time, knowledge, relationships, and opportunities. It remembers so Antoine can focus on family, deep work, stewardship, and service."},
+      {"n": "05", "title": "Flow State Macro", "desc": "The public voice. Macro education that teaches stewardship in public and funds the mission."},
+      {"n": "06", "title": "Assets", "desc": "The downstream result — capital, credentials, audience, land, businesses. Outputs, never the point."},
+      {"n": "07", "title": "Impact", "desc": "Family, service, community, generational roots. The reason the whole chain exists."}
+    ],
+    "finalInstruction": "If Atlas must choose between becoming more sophisticated or helping Antoine become a better steward, always choose the latter. Every feature should simplify decisions, reinforce stewardship, preserve optionality, and free attention for relationships, family, service, deep work, and long-term impact.",
+    "designConsequence": "This dashboard obeys the final instruction: no module exists here unless it simplifies a real recurring decision or preserves a lesson. Anything that becomes decoration gets deleted."
+  },
+
+  "priorities": [
+    {
+      "id": "p1",
+      "name": "Flow State Macro — Ship Episode 1",
+      "why": "The content engine cannot exist until one episode exists. Publishing beats planning.",
+      "items": [
+        {"key": "p1_script", "text": "Finalize Episode 1 script", "note": "Raw writing → ChatGPT script build → Antoine voice edit"},
+        {"key": "p1_vo", "text": "Complete voiceover", "note": "ElevenLabs — Brian voice"},
+        {"key": "p1_edit", "text": "Edit Episode 1", "note": "CapCut"},
+        {"key": "p1_thumb", "text": "Create thumbnail", "note": "Canva"},
+        {"key": "p1_publish", "text": "Publish Episode 1", "note": "YouTube @flowstatemacro"},
+        {"key": "p1_engine", "text": "Build the long-term content engine", "note": "Nine-stage production workflow, 01 Research → 09 Archive, running weekly"}
+      ],
+      "nextUnlock": "Episode 1 live → content engine cadence begins"
+    },
+    {
+      "id": "p2",
+      "name": "Foundation House Capital — Financial Infrastructure",
+      "why": "Clean books from Day One are the difference between a family office and a hobby. Auditability starts at the first dollar.",
+      "items": [
+        {"key": "p2_llc", "text": "Form the LLC", "note": "FlowStateMacro LLC (Wyoming) — formed"},
+        {"key": "p2_ein", "text": "Obtain EIN", "note": "Obtained"},
+        {"key": "p2_mercury", "text": "Open Mercury business checking", "note": "Post-Articles of Organization — in progress"},
+        {"key": "p2_card", "text": "Apply for Mercury business credit card", "note": "After checking is open"},
+        {"key": "p2_route", "text": "Route ALL business expenses through the business card", "note": "Zero personal/business mixing — ever"},
+        {"key": "p2_payfull", "text": "Pay the statement in full every month", "note": "Non-negotiable. No revolving balance."},
+        {"key": "p2_books", "text": "Establish bookkeeping from Day One", "note": "1 hr daily deep work block; books closed by the 5th of each month"}
+      ],
+      "nextUnlock": "First full month of clean, closed books"
+    },
+    {
+      "id": "p3",
+      "name": "Capability Building — Daily Deep Work",
+      "why": "Foundation Phase objective: become the man capable of building Atlas. 3.5 hours a day, compounding for three years.",
+      "items": [
+        {"key": "p3_book", "text": "1 hour — Bookkeeping", "note": "Real FHC/FSM books, not tutorials"},
+        {"key": "p3_fsm", "text": "1 hour — FSM content creation", "note": "Script, record, edit — output-producing work only"},
+        {"key": "p3_code", "text": "1 hour — Coding with Claude", "note": "Small Atlas-building projects; learn by building"},
+        {"key": "p3_read", "text": "30 min — Reading", "note": "Bond Investing, Benjamin Graham, Financial Statement Analysis"}
+      ],
+      "nextUnlock": "First unbroken 7-day deep work week"
+    }
+  ],
+
+  "deepWork": {
+    "blocks": [
+      {"label": "Bookkeeping", "minutes": 60},
+      {"label": "FSM Content", "minutes": 60},
+      {"label": "Coding with Claude", "minutes": 60},
+      {"label": "Reading", "minutes": 30}
+    ],
+    "note": "3.5 hours daily. Check each block when completed. The grid tracks the current week — export a snapshot before the Sunday review to preserve the record, or log the week's totals in the CEO Letter."
+  },
+
+  "kpis": [
+    {"name": "Episode 1 pipeline stage", "current": "Script in progress", "target": "Published", "cadence": "Until shipped"},
+    {"name": "Deep work hours", "current": "0 / wk (starting)", "target": "24.5 hrs/wk (3.5 × 7)", "cadence": "Weekly"},
+    {"name": "Meaningful GitHub commits", "current": "1 / wk", "target": "≥ 1 / wk minimum, Sunday anchor", "cadence": "Weekly"},
+    {"name": "Business expenses routed through business card", "current": "N/A — card pending", "target": "100%", "cadence": "Monthly"},
+    {"name": "Statement paid in full", "current": "N/A — card pending", "target": "Yes, every month", "cadence": "Monthly"},
+    {"name": "Books closed by the 5th", "current": "Not yet started", "target": "Yes, every month", "cadence": "Monthly"},
+    {"name": "Reading minutes", "current": "~150 / wk", "target": "210 / wk", "cadence": "Weekly"},
+    {"name": "Bodyweight trend", "current": "245 lbs", "target": "205 lbs by June 2027", "cadence": "Weekly weigh-in"},
+    {"name": "War chest (SGOV → cash reserve)", "current": "Building toward $5K", "target": "$25K by May 2027", "cadence": "Monthly"},
+    {"name": "Decision Journal entries", "current": "0", "target": "≥ 1 meaningful entry / wk", "cadence": "Weekly"}
+  ],
+
+  "antiGoals": [
+    {"rule": "Do not build Atlas features that don't simplify a real decision", "why": "Atlas exists to reduce cognitive load, not to become another productivity app"},
+    {"rule": "No new tools if ChatGPT, Claude, Perplexity, GitHub, or Drive can already do it", "why": "Tool sprawl fragments the source of truth"},
+    {"rule": "No options positions without a defined timeline trigger", "why": "COP precedent — options require time certainty. Common stock only until a construction/launch date exists"},
+    {"rule": "No live capital deployment before allocation rules are documented", "why": "Rules before money. Gate discipline"},
+    {"rule": "No lifestyle inflation when debt clears", "why": "The $400–500/mo unlock routes to the war chest, not consumption"},
+    {"rule": "No trading outside the four locked instruments without prior review", "why": "XAUUSD, CL, COPPER, USDJPY. Consultation before expansion"},
+    {"rule": "Never mix personal and business expenses", "why": "Clean books from Day One — auditability is identity, not chore"},
+    {"rule": "Never skip the Weekly Executive Review two weeks in a row", "why": "The review is the immune system of the whole operation"},
+    {"rule": "Sophistication is never the goal", "why": "Stewardship is. Complexity must always justify itself against the final instruction"}
+  ],
+
+  "decisionJournalSeeds": [
+    {"date": "2026-06", "decision": "Dropped EOOW qualification pursuit", "reasoning": "Misaligned with May 2029 separation and LNG bridge career goals — prestige without strategic return", "expected": "Freed watch-qual study time redirects to CFA prep and deep work blocks", "review": "2026-12"},
+    {"date": "2026-06", "decision": "Retired Notion; GitHub is the single source of truth", "reasoning": "Two systems of record means zero systems of record. Version control beats convenience", "expected": "All artifacts committed within 48 hrs; no orphaned documents", "review": "2026-09"}
+  ],
+
+  "opportunitySeeds": [
+    {"opportunity": "Bangor GT Mech Tech shore duty billet", "source": "Direct CMC outreach + GSCS Colston advocacy", "stage": "Awaiting orders decision", "next": "Follow up if no response within 2 weeks"},
+    {"opportunity": "LSS Green Belt enrollment", "source": "Emily Graumann (contact)", "stage": "Queued for September 2026", "next": "Confirm enrollment window on shore duty start"},
+    {"opportunity": "SDSU BS Mathematics, Spring 2027", "source": "Jose Esparza (military admissions)", "stage": "Pre-application", "next": "Contact Esparza to confirm enrollment path and TA/GI Bill sequencing"}
+  ],
+
+  "relationshipSeeds": [
+    {"person": "GSCS Colston", "role": "Top snipe / advocate", "status": "Strong — actively vouching for Bangor billet", "next": "Keep informed on orders progress; express gratitude concretely"},
+    {"person": "CMC, TRIREFFAC Bangor", "role": "Orders decision influence", "status": "Outreach sent", "next": "Respectful follow-up if silent at 2 weeks"},
+    {"person": "Jose Esparza", "role": "SDSU military admissions", "status": "Contact established", "next": "Confirm Spring 2027 enrollment steps"},
+    {"person": "Home-ship mentor / best friend", "role": "Personal counsel", "status": "Strong", "next": "Regular contact through deployment end and homecoming"},
+    {"person": "Emily Graumann", "role": "LSS Green Belt contact", "status": "Identified", "next": "Reach out September 2026"},
+    {"person": "CPA (Stewardship Council seat 1)", "role": "Tax + bookkeeping oversight", "status": "Not yet identified", "next": "Begin search once Mercury checking is open — interview against the seven advisor criteria"},
+    {"person": "Business attorney (Council seat 2)", "role": "Entity + contract counsel", "status": "Not yet identified", "next": "Source candidates via Mercury/Wyoming registered agent network"},
+    {"person": "Banking relationship (Council seat 3)", "role": "Mercury business banking", "status": "In progress", "next": "Open checking, then establish a named point of contact"},
+    {"person": "Entrepreneurial mentor (Council seat 4)", "role": "Pattern recognition from someone further ahead", "status": "Not yet identified", "next": "Identify one candidate — evaluate on ability to teach and challenge assumptions"}
+  ],
+
+  "knowledgeVault": {
+    "activeReading": [
+      {"title": "The Bond Book", "domain": "Fixed income foundations", "status": "Active"},
+      {"title": "Fixed Income Mathematics", "domain": "Duration, convexity, repo, TIPS — Level 2", "status": "Active"},
+      {"title": "Benjamin Graham — Interpretation of Financial Statements", "domain": "Financial statement analysis", "status": "Active"}
+    ],
+    "curriculum": "The Steward's Curriculum (FHC-EDU-001 v1.0) — seven pillars: Philosophy, Economics, History, Law, Human Nature, Markets & Systems, Credentials. A governing document, not a casual reading list.",
+    "captureRule": "Every book produces a notes file in /knowledge-vault/ in the repo. A book without committed notes doesn't count as read.",
+    "location": "GitHub: /knowledge-vault/ · Drive: Foundation House Capital / 04 Knowledge"
+  },
+
+  "ceoLetter": {
+    "prompts": [
+      "State of the mission — one honest paragraph",
+      "What shipped this week (artifacts, not activity)",
+      "The numbers — deep work hours, commits, KPIs moved",
+      "Hardest decision made and how it was reasoned",
+      "What I was wrong about or what surprised me",
+      "Next week's single most important outcome",
+      "A note on stewardship — was attention spent on what matters?"
+    ],
+    "rule": "Written every Sunday after the intelligence pull. Copied to markdown and committed to /ceo-letters/ in the repo. The letter is written to the future board of Foundation House Capital — even while that board is one man."
+  },
+
+  "returnMatrix": [
+    {"domain": "Capital", "investment": "Clean books, war chest build, paper trading discipline", "expected": "A capital base with a verifiable audit trail from dollar one", "risk": "Overreach / speculation outside the locked instruments", "horizon": "5–10+ yrs", "action": "Open Mercury; route everything through the business card", "compounding": "Trust in the numbers compounds into trust from future advisors and investors"},
+    {"domain": "Time", "investment": "3.5 hr daily deep work block, Sunday review ritual", "expected": "Capability acquisition — the Foundation Phase objective itself", "risk": "Scattered focus; sharpening the ax instead of chopping", "horizon": "2026–2029", "action": "Protect the deep work block like a watch rotation", "compounding": "Skill stacks: bookkeeping × content × code × financial literacy"},
+    {"domain": "Energy", "investment": "Training streak, nutrition rules, sleep", "expected": "Execution capacity for everything above", "risk": "Deployment tempo disruption", "horizon": "12-month protocol", "action": "Hold the streak through homecoming; Phase 2 begins on return", "compounding": "Discipline in the body reinforces discipline in the books"},
+    {"domain": "Skill", "investment": "Daily coding, bookkeeping practice, CFA prep from Sept", "expected": "The man capable of building Atlas", "risk": "Tutorial consumption masquerading as capability", "horizon": "2026–2029", "action": "Build real things only — FHC books, FSM episodes, Atlas modules", "compounding": "Each real project makes the next one faster"},
+    {"domain": "Reputation", "investment": "Navy excellence + published episodes", "expected": "Public trust — the license for everything in Phase 2+", "risk": "Publishing delay; reputation can't compound at zero output", "horizon": "Ongoing", "action": "Ship Episode 1", "compounding": "Consistency compounds trust faster than intensity"},
+    {"domain": "Relationships", "investment": "Stewardship Council formation, command relationships, mentors", "expected": "The Council — FHC's actual greatest asset", "risk": "Building the council fast instead of slow; trust must precede responsibility", "horizon": "Phase 1: 2026–2029", "action": "Identify CPA candidates once Mercury is open", "compounding": "Trust compounds before responsibility does — by design"},
+    {"domain": "Spiritual alignment", "investment": "Stewardship filter on every decision; Source at the top of the chain", "expected": "Coherence — mission, money, and identity pointing the same direction", "risk": "Urgency overriding the filter", "horizon": "Lifelong", "action": "Run every major decision through the chain before executing", "compounding": "Alignment compounds into clarity and reduced regret"}
+  ],
+
+  "gates": [
+    {"id": "g0", "num": "0", "name": "Foundation Recovery", "status": "complete", "progress": 92,
+      "desc": "Stabilize the base layer — nervous system, debt, consistency, mission clarity.",
+      "done": ["Stabilize nervous system", "Rebuild daily consistency", "Clarify mission (stewardship chain established)", "Establish core documents (Constitution drafted)"],
+      "missing": ["Final high-interest debt payoff (on track, August 2026)"],
+      "next": ["Finish final payoff", "Route the $400–500/mo unlock to war chest — not lifestyle", "Archive Gate 0 retro in GitHub"],
+      "risks": ["Payoff slips and delays the capital cadence"]},
+    {"id": "g1", "num": "I", "name": "Executive Infrastructure", "status": "active", "progress": 60,
+      "desc": "The chopping begins: Episode 1 shipped, Mercury open, books running, daily deep work installed. This gate is about output, not architecture.",
+      "done": ["GitHub repo live (400+ commits), Notion retired", "Drive architecture finalized", "LLC formed + EIN obtained", "Executive Operating System (this dashboard) built"],
+      "missing": ["Episode 1 published", "Mercury checking + credit card open", "Bookkeeping running daily", "First unbroken deep work week", "First CEO Letter committed"],
+      "next": ["Finalize Episode 1 script", "Open Mercury checking", "Start the deep work grid Monday"],
+      "risks": ["Reverting to architecture-polishing instead of shipping"]},
+    {"id": "g2", "num": "II", "name": "Content Engine Running", "status": "upcoming", "progress": 8,
+      "desc": "From one episode to a machine: weekly cadence, the nine-stage workflow running without heroics.",
+      "done": ["EP2 raw writing started"],
+      "missing": ["Episodes 2–5 scripted", "Weekly publish cadence held for 8 consecutive weeks", "FSM Weekly Content Intelligence feeding the pipeline"],
+      "next": ["Queue EP2 script build after EP1 ships", "Lock a realistic publish day", "Define minimum viable episode standard"],
+      "risks": ["Perfectionism breaking the cadence"]},
+    {"id": "g3", "num": "III", "name": "Capital Formation", "status": "future", "progress": 18,
+      "desc": "Emergency fund complete, thesis tracker live, allocation rules documented, first allocation memo written.",
+      "done": ["Paper trading live since June 1 (V3 + V4)", "War chest building via SGOV"],
+      "missing": ["Emergency fund complete", "ATLAS thesis tracker in GitHub markdown", "Portfolio rules documented", "First capital allocation memo"],
+      "next": ["Close debt (Aug 2026)", "Stand up thesis tracker in repo", "Draft first allocation memo (CCJ candidate)"],
+      "risks": ["Speculative overreach before rules exist"]},
+    {"id": "g4", "num": "IV", "name": "Skill Credentialing", "status": "future", "progress": 10,
+      "desc": "CFA L1, math degree enrollment, Python capability — the credentialed spine of the future allocator.",
+      "done": ["CFA L1 plan filed (study from Sept 2026)", "Daily coding block installed (Gate I)"],
+      "missing": ["CFA L1 prep underway", "SDSU/UCSD enrollment confirmed", "Accounting/tax/estate basics mapped", "Repeatable macro research workflow"],
+      "next": ["Contact Jose Esparza", "Begin CFA study September 2026", "Keep the daily coding block unbroken"],
+      "risks": ["Shore duty orders slippage compressing the education timeline"]},
+    {"id": "g5", "num": "V", "name": "Sovereign Vehicle", "status": "future", "progress": 5,
+      "desc": "FHC formalized as a real structure: IPS complete, council Phase 2 seated, jurisdiction strategy professionally reviewed.",
+      "done": ["Three-layer jurisdiction concept locked (Houston / Rocha / Mauritius)"],
+      "missing": ["Investment Policy Statement", "Family office framework", "Trust/estate strategy reviewed with professionals", "Residency pathways formally researched"],
+      "next": ["Begin Sovereign Base research thread", "Identify cross-border estate attorney (Council Phase 2)"],
+      "risks": ["Structuring informally without professional review"]},
+    {"id": "g6", "num": "VI", "name": "Stewardship Expansion", "status": "future", "progress": 1,
+      "desc": "The capital engine produces, the Council matures, and the mission expands into philanthropy and public leadership.",
+      "done": [],
+      "missing": ["Capital engine producing", "Council Phase 3 leadership", "Public trust established", "Philanthropic arm designed"],
+      "next": ["No direct action — downstream of Gates I–V"],
+      "risks": ["Skipping ahead conceptually instead of executing the current gate"]}
+  ],
+
+  "council": {
+    "principle": "Do not think of this as a financial team. Build a Stewardship Council. Foundation House Capital's greatest asset will never be its portfolio — it will be the quality of the people entrusted to steward it. Build this council slowly. Let trust compound before responsibility does.",
+    "criteria": ["Technical competence", "Integrity", "Humility", "Long-term thinking", "Ability to teach", "Ability to challenge assumptions", "Alignment with stewardship"],
+    "phases": [
+      {"phase": "Phase 1 (2026–2029)", "status": "active", "seats": [
+        {"role": "CPA", "status": "Not yet identified", "next": "Begin search once Mercury checking opens"},
+        {"role": "Business attorney", "status": "Not yet identified", "next": "Source via Wyoming registered agent / Mercury network"},
+        {"role": "Banking relationship", "status": "In progress (Mercury)", "next": "Open checking; establish named contact"},
+        {"role": "Entrepreneurial mentor", "status": "Not yet identified", "next": "Identify one candidate; evaluate on teaching + challenging"}
+      ]},
+      {"phase": "Phase 2", "status": "future", "seats": [
+        {"role": "Estate planning attorney", "status": "Future", "next": "—"},
+        {"role": "Trust attorney", "status": "Future", "next": "—"},
+        {"role": "Insurance / risk advisor", "status": "Future", "next": "—"},
+        {"role": "Investment specialists (only where genuinely needed)", "status": "Future", "next": "—"}
+      ]},
+      {"phase": "Phase 3", "status": "future", "seats": [
+        {"role": "CFO", "status": "Future", "next": "—"},
+        {"role": "Estate counsel", "status": "Future", "next": "—"},
+        {"role": "Philanthropy lead", "status": "Future", "next": "—"},
+        {"role": "Chief of staff", "status": "Future", "next": "—"}
+      ]}
+    ]
+  },
+
+  "wrongAboutSeeds": [
+    {"date": "2026-06", "belief": "USDJPY TTM Squeeze was pre-breakout energy about to fire", "reality": "The squeeze had already fired — the 40-year low at 162 confirmed the move was underway, not pending", "lesson": "Fundamentals lead, technicals confirm. The yield differential was the cause; the squeeze was the symptom. Filed as the founding argument for Atlas's macro intelligence layer."},
+    {"date": "2026-05", "belief": "EOOW qualification was worth pursuing for career capital", "reality": "It served a career path I'm not on — misaligned with May 2029 separation and the LNG bridge plan", "lesson": "Prestige that doesn't serve the mission is a cost, not an asset. Run qualifications through the sovereignty filter like everything else."}
+  ],
+
+  "signalNoise": {
+    "signals": [
+      "JP10Y at 2.645% — above Goldman's 2.5% institutional threshold (Japan carry trade)",
+      "GENIUS Act signed as Public Law 119-27 — programmable money thesis advancing",
+      "USDJPY 160–162 rejection zone forming ahead of the November 2026 execution window",
+      "T10Y2Y outperforming DXY as commodity-instrument filter (validated via the USDJPY case study)"
+    ],
+    "noise": [
+      "Daily USDJPY headline volatility inside the intervention-watch band",
+      "Short-term AI-bubble commentary without position-relevant triggers",
+      "Market commentary not tied to the four locked instruments"
+    ],
+    "watchlist": ["XAUUSD", "CL", "COPPER", "USDJPY", "CCJ (uranium)", "LYB (winter 2026–27 catalyst)"],
+    "decisionRequired": [
+      "FXY Jan 2028 $62 call — confirm execution trigger at USDJPY 160–162 rejection",
+      "COP — common stock only until Syria pipeline construction timeline is defined"
+    ],
+    "noActionZone": [
+      "AI bubble thesis — monitoring only",
+      "Iran MoU — negotiation window still open"
+    ],
+    "researchQueue": [
+      "LYB winter 2026–27 catalyst window (most urgent equity research)",
+      "DTCC/Canton October 2026 full launch — XRP vs RLUSD routing signal",
+      "MOS / NTR agriculture inputs research"
+    ]
+  },
+
+  "intelReports": [
+    {"name": "ATLAS Weekly Intelligence Report", "purpose": "Macro, markets, thesis tracking, signal vs noise, paper trades", "freq": "Weekly", "when": "Sunday", "github": "active", "drive": "mirrored", "lastGen": "2026-06-28", "lastReviewed": "2026-06-28", "signals": "T10Y2Y filter validated; JP10Y above threshold", "actions": "Held FXY thesis; no new trades", "changedThesis": "Yes — T10Y2Y filter confirmed for V4"},
+    {"name": "FSM Weekly Content Intelligence Report", "purpose": "Content ideas, macro narratives, audience signals", "freq": "Weekly", "when": "Sunday", "github": "active", "drive": "mirrored", "lastGen": "2026-06-28", "lastReviewed": "pending", "signals": "Japan carry trade + Syria pipeline strongest hooks", "actions": "Prioritized EP3/EP4 topics", "changedThesis": "No"},
+    {"name": "FHC Weekly Capital Allocation Report", "purpose": "Allocation decisions + rule adherence", "freq": "Weekly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"},
+    {"name": "Sovereign Base / Residency Intelligence Report", "purpose": "Residency, tax, citizenship pathway changes", "freq": "Monthly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"},
+    {"name": "Infrastructure & Ground Lease Intelligence Report", "purpose": "Data center, energy, ground lease flow", "freq": "Monthly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"},
+    {"name": "Education / Credential Progress Report", "purpose": "Math/CFA/Python vs plan", "freq": "Monthly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"},
+    {"name": "Fitness / Body Operating Report", "purpose": "Rocky IV Protocol adherence + metrics", "freq": "Weekly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"}
+  ],
+
+  "projects": {
+    "fsm": {"label": "Flow State Macro", "icon": "FSM", "fields": {
+      "Mission": "Macro education made public — the voice of stewardship.",
+      "Current phase": "Executive Priority 1 — ship Episode 1",
+      "Pipeline": "Raw writing (Antoine) → ChatGPT script → Antoine voice edit → ElevenLabs VO → CapCut → Canva → publish",
+      "Episode 1": "Script in progress — the current bottleneck of the entire operation",
+      "Episode 2": "Raw writing started",
+      "Next 5 videos": "EP1 (origin), EP2 (algo build), EP3 (COP/Syria), EP4 (Japan carry trade), EP5 (TBD from intelligence)",
+      "Channel": "@flowstatemacro — created, awaiting first upload",
+      "Cadence": "Weekly target once EP1 ships; hold 8 consecutive weeks to close Gate II",
+      "Next unlock": "Episode 1 published"
+    }},
+    "fhc": {"label": "Foundation House Capital", "icon": "FHC", "fields": {
+      "Mission": "Long-term sovereign capital vehicle and family office — the lived expression of stewardship.",
+      "Current phase": "Executive Priority 2 — financial infrastructure",
+      "Entity": "FlowStateMacro LLC (Wyoming) formed; EIN obtained",
+      "Banking": "Mercury checking in progress → business credit card next",
+      "Bookkeeping": "Daily 1-hr block; books closed by the 5th monthly",
+      "Constitution": "Immutable FHC Constitution — drafted, to be finalized and committed",
+      "Investment philosophy": "CAPE rotation framework + margin of safety documented",
+      "Council": "Phase 1 forming — see Stewardship Council tab",
+      "Next unlock": "First full month of clean, closed books"
+    }},
+    "atlas": {"label": "Atlas", "icon": "ATL", "fields": {
+      "Mission": "The externalization of Antoine's decision framework — stewards attention, capital, time, knowledge, relationships, opportunities.",
+      "Current phase": "NOT being built yet — by design. Foundation Phase builds the builder.",
+      "What exists now": "This Executive OS dashboard, the Sunday Perplexity pull, paper trading systems V3/V4, GitHub as memory",
+      "Paper trades": "V3 (VP-ORB, OANDA, 38.30% WR, +121%) · V4 (MT5, T10Y2Y filter, 35.76% WR, +130%) — live since June 1",
+      "Locked instruments": "XAUUSD, CL, COPPER, USDJPY",
+      "Automation rule": "No signals without authorization; execution automation requires 90 days validated paper trading",
+      "Next unlock": "Atlas module development begins December 2026 (shore duty), fed by six months of deep work capability"
+    }},
+    "navy": {"label": "Navy / Career", "icon": "NAVY", "fields": {
+      "Status": "GSM2(SW), deployed, ~1 month to homecoming",
+      "Separation": "May 2029",
+      "Orders goal": "GT Mech Tech billet, Bangor WA — outreach sent to CMC with GSCS Colston vouching",
+      "Fallback": "San Diego (NAB Coronado) as previously documented",
+      "Shore duty": "Begins December 2026",
+      "Reputation": "High — command relationships actively cultivated",
+      "Next unlock": "Orders confirmed"
+    }},
+    "education": {"label": "Education / Credentials", "icon": "EDU", "fields": {
+      "Path": "BS Mathematics — SDSU/UCSD target, Spring 2027 (UMGC fallback)",
+      "CFA Level 1": "Study begins September 2026; exam target May 2027",
+      "Python": "Daily 1-hr coding block with Claude + exercism.io",
+      "LSS Green Belt": "September 2026 enrollment (Emily Graumann)",
+      "Curriculum": "The Steward's Curriculum — FHC-EDU-001 v1.0",
+      "Next unlock": "Esparza confirms SDSU enrollment path"
+    }},
+    "finance": {"label": "Finances", "icon": "FIN", "fields": {
+      "High-interest debt": "Final stretch — August 2026 payoff",
+      "Post-payoff rule": "$400–500/mo routes to war chest, not lifestyle (anti-goal)",
+      "War chest": "$25K by May 2027; SGOV building to $5K first",
+      "TSP": "C60/I20/G20",
+      "Brokerage": "COPX, IAU, PSLV, XYL, VWO, SGOV",
+      "Crypto": "XRP building toward 1,000 before Oct 2026; 25/75 profit split framework locked",
+      "Next unlock": "Debt payoff complete"
+    }},
+    "fitness": {"label": "Fitness / Body", "icon": "FIT", "fields": {
+      "Protocol": "Rocky IV — 245 → 205 lbs by June 2027",
+      "Current": "Near-daily training since June 1; Sessions A/B/C + weather deck circuit + Sunday Yin yoga",
+      "Nutrition": "No snacks / no desserts since July 1",
+      "Ship stack": "L-Citrulline + creatine only (full herb protocol is home-only)",
+      "Phase 2": "Homecoming — full gym, alkaline protocol begins",
+      "Phase 3": "Judo + Boxing",
+      "Next unlock": "Homecoming"
+    }},
+    "personal": {"label": "Personal / Spiritual / Leadership", "icon": "PSL", "fields": {
+      "Identity": "Steward, builder, teacher, operator",
+      "Filter": "Does this increase or decrease sovereignty?",
+      "Faith": "Source at the top of the chain — everything below is entrusted, not owned",
+      "Relationships": "Evaluate demonstrated reality, not projected potential (self-named pattern, actively corrected)",
+      "Leadership": "Built through Navy command + FSM teaching voice; public office preparation is a far-horizon file",
+      "Next unlock": "Ongoing discipline layer — no gate"
+    }}
+  },
+
+  "weeklyReview": {
+    "prompts": [
+      {"key": "wr_completed", "q": "What did I complete this week? (Artifacts, not activity)"},
+      {"key": "wr_moved", "q": "What moved the mission forward?"},
+      {"key": "wr_avoided", "q": "What did I avoid?"},
+      {"key": "wr_bottleneck", "q": "What is the current bottleneck?"},
+      {"key": "wr_leverage", "q": "What is the highest-leverage action next week?"},
+      {"key": "wr_cut", "q": "What needs to be deleted, delegated, automated, or delayed?"},
+      {"key": "wr_learned", "q": "What did I learn?"},
+      {"key": "wr_decision", "q": "What decision needs to be made? (Log it in the Decision Journal)"},
+      {"key": "wr_wrong", "q": "Was I wrong about anything this week? (Log it in Things I Was Wrong About)"},
+      {"key": "wr_compound", "q": "What is one thing that compounds if repeated weekly?"}
+    ],
+    "checks": [
+      {"key": "wr_chk_sunday", "label": "Sunday Perplexity intelligence pull completed"},
+      {"key": "wr_chk_github", "label": "GitHub commit made this week"},
+      {"key": "wr_chk_deepwork", "label": "Deep work grid reviewed — hours counted honestly"},
+      {"key": "wr_chk_trades", "label": "Paper trades logged (V3 / V4)"},
+      {"key": "wr_chk_books", "label": "Bookkeeping current — no unrecorded transactions"},
+      {"key": "wr_chk_ceo", "label": "CEO Letter written and committed"},
+      {"key": "wr_chk_training", "label": "Training sessions completed as planned"},
+      {"key": "wr_chk_gates", "label": "Gate progress reviewed and updated"}
+    ]
+  },
+
+  "documents": [
+    {"name": "FHC Constitution (immutable)", "status": "draft", "location": "both", "updated": "2026-06-08", "next": "Finalize and commit — after ratification it does not change"},
+    {"name": "FHC Investment Philosophy", "status": "active", "location": "both", "updated": "2026-06-20", "next": "Add margin-of-safety case studies"},
+    {"name": "FHC Investment Policy Statement", "status": "not started", "location": "—", "updated": "—", "next": "Draft outline in Gate III"},
+    {"name": "Anti-Goals Register", "status": "active", "location": "GitHub", "updated": "2026-07-02", "next": "Commit from this dashboard; review quarterly"},
+    {"name": "Decision Journal", "status": "active", "location": "GitHub", "updated": "2026-07-02", "next": "≥1 entry weekly; commit as markdown"},
+    {"name": "Things I Was Wrong About", "status": "active", "location": "GitHub", "updated": "2026-07-02", "next": "Review monthly — preserve lessons, not ego"},
+    {"name": "Weekly CEO Letters", "status": "active", "location": "GitHub", "updated": "—", "next": "First letter this Sunday"},
+    {"name": "Stewardship Council Charter", "status": "not started", "location": "—", "updated": "—", "next": "Draft the seven criteria + phase plan as a standalone doc"},
+    {"name": "FSM Editorial Constitution", "status": "draft", "location": "GitHub", "updated": "2026-06-15", "next": "Lock voice/tone rules"},
+    {"name": "FSM Constitution", "status": "draft", "location": "both", "updated": "2026-06-12", "next": "Finalize tone section"},
+    {"name": "ATLAS Operating Manual", "status": "draft", "location": "GitHub", "updated": "2026-06-18", "next": "Deferred — Atlas build begins Dec 2026"},
+    {"name": "ATLAS Thesis Tracker", "status": "needs review", "location": "GitHub", "updated": "2026-06-22", "next": "Convert to markdown table"},
+    {"name": "ATLAS Weekly Reports", "status": "active", "location": "both", "updated": "2026-06-28", "next": "Maintain Sunday cadence"},
+    {"name": "Personal Constitution", "status": "draft", "location": "Drive", "updated": "2026-06-01", "next": "Review quarterly"},
+    {"name": "Stewardship Philosophy", "status": "canonical", "location": "both", "updated": "2026-05-30", "next": "Reference document — stable"},
+    {"name": "The Steward's Curriculum (FHC-EDU-001)", "status": "canonical", "location": "both", "updated": "2026-06-25", "next": "Execute, don't revise"}
+  ],
+
+  "timeline": [
+    {"label": "Now", "title": "Chop the tree", "items": ["Finalize Episode 1 script", "Open Mercury checking", "Start the deep work grid", "Commit this Executive OS to GitHub"]},
+    {"label": "Next 30 Days", "title": "First artifacts shipped", "items": ["Episode 1 published", "Business credit card active, expenses routed", "First CEO Letter committed", "High-interest debt payoff (August)"]},
+    {"label": "Next 90 Days", "title": "Cadence installed", "items": ["Weekly publish cadence holding", "First full month of closed books", "CFA L1 study begins (September)", "Bangor orders resolved"]},
+    {"label": "6 Months", "title": "Shore duty transition", "items": ["Shore duty begins (December 2026)", "Atlas module development begins", "Council Phase 1: CPA identified"]},
+    {"label": "1 Year", "title": "Capability compounding", "items": ["CFA L1 exam (May 2027)", "SDSU/UCSD enrollment (Spring 2027)", "War chest at $25K", "FXY thesis window resolved"]},
+    {"label": "3 Years", "title": "Foundation Phase closes", "items": ["Separation from Navy (May 2029)", "The man capable of building Atlas exists", "Council Phase 1 complete and trusted"]},
+    {"label": "5 Years", "title": "Sovereign vehicle forming", "items": ["FHC structure professionally reviewed", "Three-passport strategy underway", "Senior thesis window (SSRN before outside capital)"]},
+    {"label": "10 Years", "title": "Stewardship expansion", "items": ["Capital engine producing", "Council Phase 2–3 maturing", "Boring business acquisitions (data center belt / Research Triangle)"]},
+    {"label": "Age 50 Vision", "title": "Full family office", "items": ["FHC fully operational — stewardship and compounding phase", "Generational base in Rocha", "The Council stewards more than the founder does"]}
+  ],
+
+  "risks": [
+    {"name": "Sophistication over stewardship", "severity": "high", "prob": "med", "warning": "Adding a dashboard feature or system that doesn't simplify a real decision", "counter": "The final instruction is a design law — audit every module against it quarterly"},
+    {"name": "Overbuilding and not shipping", "severity": "high", "prob": "high", "warning": "Another week of architecture with no published episode", "counter": "Episode 1 is Executive Priority 1 — nothing new gets built until it ships"},
+    {"name": "Tutorial consumption masquerading as capability", "severity": "med", "prob": "med", "warning": "Deep work hours logged but no artifact produced", "counter": "Every block must touch a real thing: real books, real script, real code"},
+    {"name": "Mixing personal and business expenses", "severity": "high", "prob": "low", "warning": "A single purchase on the wrong card", "counter": "Business card for business, period — anti-goal, no exceptions"},
+    {"name": "Financial overreach", "severity": "high", "prob": "low", "warning": "Considering live capital before rules are documented", "counter": "Gate III unlock criteria enforced"},
+    {"name": "Macro thesis overconfidence", "severity": "med", "prob": "med", "warning": "Treating a thesis as confirmed before its timeline trigger", "counter": "COP precedent — defined timeline before options exposure"},
+    {"name": "Building the Council too fast", "severity": "med", "prob": "low", "warning": "Granting responsibility before trust has compounded", "counter": "Phase discipline — Phase 1 is four seats only, built slowly"},
+    {"name": "Burnout", "severity": "high", "prob": "med", "warning": "Deployment + deep work + training with no rest built in", "counter": "Sunday is review and rest, not raw production"},
+    {"name": "Cadence collapse after Episode 1", "severity": "high", "prob": "med", "warning": "EP1 ships, then three weeks of silence", "counter": "EP2 script build queued to start the day EP1 publishes"},
+    {"name": "Emotional distractions", "severity": "med", "prob": "med", "warning": "Projecting potential beyond demonstrated reality", "counter": "Same evidence standard for relationships as for theses"},
+    {"name": "Not committing artifacts to GitHub", "severity": "high", "prob": "med", "warning": "A finished file living only on a device or in a chat", "counter": "48-hour commit rule — if it isn't in the repo, it doesn't exist"}
+  ],
+
+  "repo": {
+    "repoName": "antoinehicks23/FlowStateMacro",
+    "lastCommit": "2026-06-28",
+    "dashboardVersion": "v2.0 — Executive Operating System",
+    "weeklyGoal": "Minimum 1 meaningful commit per week, anchored to the Sunday review",
+    "commitRules": [
+      "48-hour rule: every finished artifact is committed within 48 hours or it doesn't exist",
+      "Sunday anchor: intelligence pull → dashboard update → CEO Letter → commit, every week",
+      "Auditability: every meaningful decision produces a committed artifact — a Decision Journal entry, an allocation memo, or a CEO Letter paragraph",
+      "Drive mirrors GitHub for human-readable sharing (attorneys, CPA); GitHub is truth, Drive is presentation",
+      "DRIVE_INDEX.md is the bridge — update it whenever a canonical document moves or is added"
+    ],
+    "githubStructure": "FlowStateMacro/\n├── atlas-dashboard/          ← this Executive OS (index.html, data.json, README)\n├── governing-documents/      ← FHC Constitution, Editorial Constitution, Steward's Curriculum\n├── decision-journal/         ← one markdown file per month (2026-07.md ...)\n├── ceo-letters/              ← one markdown file per week (2026-W27.md ...)\n├── wrong-about/              ← WRONG_ABOUT.md — the permanent error ledger\n├── council/                  ← charter, advisor evaluations, meeting notes\n├── opportunities/            ← pipeline notes, one file per live opportunity\n├── knowledge-vault/          ← book notes — a book without notes doesn't count\n├── atlas/                    ← system code, thesis tracker, weekly report archive\n├── FHC/                      ← bookkeeping exports, allocation memos, IPS drafts\n├── content/                  ← FSM scripts, episode assets, production files\n├── Journals/                 ← Daily + Weekly subfolders (existing)\n├── Archives/                 ← retired documents (existing)\n├── DRIVE_INDEX.md            ← bridge to Drive\n└── SCRATCH.md                ← open threads, one line each, cleared weekly",
+    "driveStructure": "Google Drive/\n├── FlowStateMacro YT Content/     (00–05, existing nine-stage workflow)\n│   └── ...\n└── Foundation House Capital/      (00–05, existing)\n    ├── 00 Governing Documents     ← human-readable copies for professionals\n    ├── 01 Bookkeeping             ← monthly closes, statements, receipts\n    ├── 02 Council                 ← advisor-facing materials\n    ├── 03 Allocation Memos\n    ├── 04 Knowledge               ← reading notes mirror\n    └── 05 Archive",
+    "filesToCommit": ["/atlas-dashboard/index.html (v2)", "/atlas-dashboard/data.json (v2)", "/atlas-dashboard/README.md (v2)", "/atlas-dashboard/sync_data.py", "/wrong-about/WRONG_ABOUT.md (seed from dashboard)", "/decision-journal/2026-07.md (seed from dashboard)"],
+    "backlog": ["GitHub Pages deployment", "Weekly report parser feeding data.json", "CSV paper-trade log import", "Bookkeeping export integration"]
+  },
+
+  "sovereignBases": [
+    {"country": "Uruguay", "role": "Long-term roots / peaceful sovereign base — generational home (Rocha)", "residency": "Straightforward pathway for US citizens", "citizenship": "~3 yrs residency-based (research stage)", "tax": "Territorial — foreign income largely exempt", "banking": "Strong private banking access", "legal": "Stable rule of law, high regional ranking", "property": "Full foreign ownership rights", "roots": "High — the generational home", "culture": "Spanish; strong fit reported", "timezone": "US East Coast aligned", "safety": "High for the region", "climate": "Temperate, coastal", "business": "Reasonably friendly", "capitalControls": "None significant", "pros": "Peaceful, stable, territorial tax, roots", "cons": "Smaller economy; far from Mauritius ops", "status": "Confirmed top LatAm jurisdiction", "next": "Formal residency research with an immigration attorney (Council Phase 2 adjacency)", "frontrunner": true},
+    {"country": "Mauritius", "role": "FHC operating jurisdiction — GBC fund domicile", "residency": "Investor/occupation permits under research", "citizenship": "~2034–2035 per sequencing", "tax": "Favorable GBC treatment", "banking": "Strong for fund structures", "legal": "Stable, fund-friendly", "property": "Approved-scheme ownership", "roots": "Low — operational base only", "culture": "English-speaking, low friction", "timezone": "Poor US overlap — ops only", "safety": "Good", "climate": "Tropical island", "business": "Purpose-built for international funds", "capitalControls": "Minimal for GBC", "pros": "Simultaneous visa-free China/Russia/Schengen/UK — key to 3-passport strategy", "cons": "Not a living base", "status": "Active research candidate", "next": "GBC formation requirements deep-dive", "frontrunner": false},
+    {"country": "Cape Verde", "role": "Cultural / family root-building interest", "residency": "Under-researched", "citizenship": "Needs diligence", "tax": "Needs diligence", "banking": "Limited", "legal": "Developing", "property": "Needs diligence", "roots": "Cultural interest, unsubstantiated", "culture": "Portuguese/Creole pull", "timezone": "Good US overlap", "safety": "Stable for region", "climate": "Island, arid/tropical", "business": "Unclear", "capitalControls": "Unclear", "pros": "Cultural/family pull", "cons": "Needs serious diligence", "status": "Interest noted only", "next": "No time until Gate IV+", "frontrunner": false},
+    {"country": "Portugal", "role": "Optionality / Europe access", "residency": "Established pathways (verify post-regime-changes)", "citizenship": "~5 yrs, verify current", "tax": "Regime in flux — verify", "banking": "Strong EU access", "legal": "Stable EU state", "property": "Open to foreigners", "roots": "Moderate", "culture": "Portuguese; EU lifestyle", "timezone": "Decent US overlap", "safety": "High", "climate": "Mediterranean", "business": "EU-standard", "capitalControls": "None", "pros": "EU access; language bridge to Cape Verde interest", "cons": "Tax rules in flux", "status": "Optionality only", "next": "Verify current regime before relying on old data", "frontrunner": false},
+    {"country": "Switzerland", "role": "Wealth architecture reference standard", "residency": "Difficult non-EU", "citizenship": "Long, restrictive", "tax": "High nominal, sophisticated structuring", "banking": "Best-in-class reference", "legal": "Extremely stable", "property": "Canton-restricted", "roots": "Low", "culture": "High cost, high barrier", "timezone": "Poor US overlap", "safety": "Very high", "climate": "Alpine", "business": "Excellent, expensive", "capitalControls": "None", "pros": "The benchmark for FHC banking design", "cons": "Not a realistic residency target", "status": "Reference only", "next": "Benchmark when designing FHC banking relationships", "frontrunner": false},
+    {"country": "United States", "role": "Operational anchor — Navy, education, Houston asset", "residency": "Citizen", "citizenship": "Citizen", "tax": "Worldwide taxation — the problem the other layers solve", "banking": "Full access; Mercury + Houston anchor", "legal": "Stable", "property": "Full rights — Houston anchor/Airbnb", "roots": "Career + family of origin", "culture": "Native", "timezone": "Home", "safety": "Varies", "climate": "Varies", "business": "Strong, especially Texas", "capitalControls": "None domestic", "pros": "Career, education, anchor asset in place", "cons": "Worldwide taxation", "status": "Active anchor", "next": "Maintain while building Uruguay/Mauritius layers", "frontrunner": false}
+  ],
+
+  "aiTeam": [
+    {"tool": "ChatGPT", "role": "Philosophy, strategy, synthesis, writing, reflection, decision architecture", "bestUse": "FSM vision + scripts from raw writing", "projects": "Episode 1 script build", "output": "Drive / GitHub", "risk": "Using it for technical architecture it isn't suited for", "verify": "Cross-check against ATLAS data sources", "upgrade": "Tighter raw-writing → script handoff template"},
+    {"tool": "Claude", "role": "Code, dashboards, GitHub architecture, technical documentation — Chief of Staff", "bestUse": "This Executive OS, Atlas modules, daily coding block partner", "projects": "Executive OS v2, deep work coding projects", "output": "GitHub", "risk": "Building infrastructure indefinitely instead of shipping", "verify": "48-hour commit rule on every artifact", "upgrade": "Atlas module development from December 2026"},
+    {"tool": "Perplexity", "role": "Live research, weekly intelligence, source-backed monitoring", "bestUse": "Sunday ATLAS + FSM pulls", "projects": "Weekly intelligence programs", "output": "GitHub markdown", "risk": "Treating every signal as actionable", "verify": "Route through Signal vs Noise before acting", "upgrade": "Stand up the 5 planned reports as phases unlock"},
+    {"tool": "GitHub", "role": "Version-controlled source of truth — Atlas's memory", "bestUse": "Every canonical artifact", "projects": "antoinehicks23/FlowStateMacro", "output": "—", "risk": "Artifacts built elsewhere never landing in the repo", "verify": "Weekly commit goal + Sunday anchor", "upgrade": "GitHub Pages for live dashboard"},
+    {"tool": "Google Drive", "role": "Human-readable mirror for professionals (CPA, attorneys)", "bestUse": "Council-facing documents, bookkeeping files", "projects": "FHC 00–05 structure", "output": "—", "risk": "Drift between Drive and GitHub", "verify": "DRIVE_INDEX.md kept current", "upgrade": "Automate sync checks"},
+    {"tool": "Notion / new tools", "role": "Retired / blocked by anti-goal", "bestUse": "None", "projects": "None", "output": "—", "risk": "Reintroducing sprawl", "verify": "—", "upgrade": "A new tool must close a gap the five-stack cannot — otherwise no"}
+  ]
+}
