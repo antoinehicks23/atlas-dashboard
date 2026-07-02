@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundation House Capital — Executive Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FHC EXECUTIVE OPERATING SYSTEM — v2
+   ------------------------------------------------------------
+   Content lives in data.json (or the injected fallback below).
+   You should almost never need to edit this file.
+   Design tokens: change these to retheme everything.
+   ============================================================ */
+:root{
+  --bg:#0a0d12; --bg-2:#0d1117;
+  --panel:#10151d; --panel-2:#141a24; --panel-3:#181f2a;
+  --border:#232b38; --border-soft:#1a212c;
+  --gold:#c9a24b; --gold-soft:#e8d49f; --gold-dim:#8a703a;
+  --blue:#5b86b3; --blue-soft:#7fa3c9;
+  --text:#e9ebf0; --text-dim:#aab2c0; --muted:#7a8395; --muted-2:#5a6376;
+  --green:#5f9c74; --red:#bb5f56; --amber:#c99a4b;
+  --radius:3px;
+  --serif:'Source Serif 4', Georgia, serif;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #131a24 0%, transparent 60%),
+    radial-gradient(900px 500px at 0% 0%, #11161f 0%, transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:var(--sans); font-size:14px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold-dim);color:#fff;}
+a{color:var(--blue-soft);}
+button{font-family:var(--sans);cursor:pointer;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+.shell{max-width:1400px;margin:0 auto;padding:0 28px 80px;}
+
+/* header */
+header.command-header{
+  border-bottom:1px solid var(--border); padding:22px 28px 18px;
+  position:sticky;top:0; background:rgba(10,13,18,0.92); backdrop-filter:blur(8px); z-index:50;
+}
+.header-row{max-width:1400px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.brand-block{display:flex;align-items:center;gap:14px;}
+.seal{
+  width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;color:var(--gold);font-size:13px;flex:none;
+  background:linear-gradient(180deg,#161c26,#0e131b);
+}
+.brand-text h1{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:0.02em;margin:0;}
+.brand-text .tagline{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);margin-top:3px;}
+.header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.btn{
+  background:var(--panel-2);border:1px solid var(--border);color:var(--text-dim);
+  padding:8px 14px;border-radius:var(--radius);font-size:12px;letter-spacing:0.03em;
+  transition:border-color .15s, color .15s;
+}
+.btn:hover{border-color:var(--gold-dim);color:var(--gold-soft);}
+.btn.primary{border-color:var(--gold-dim);color:var(--gold-soft);}
+.btn.small{padding:5px 10px;font-size:11px;}
+.readiness-pill{font-family:var(--mono);font-size:11px;color:var(--bg);background:var(--gold);padding:7px 12px;border-radius:var(--radius);font-weight:600;}
+
+/* tabs */
+nav.tabbar{max-width:1400px;margin:14px auto 0;display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.tab-btn{
+  background:transparent;border:none;color:var(--muted);
+  padding:9px 12px;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;font-weight:600;
+  border-bottom:2px solid transparent;
+}
+.tab-btn:hover{color:var(--text-dim);}
+.tab-btn.active{color:var(--gold-soft);border-bottom-color:var(--gold);}
+
+.tab-panel{display:none;padding-top:26px;}
+.tab-panel.active{display:block;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){.tab-panel.active{animation:none;}}
+
+.section-title{font-family:var(--serif);font-size:19px;font-weight:600;margin:0 0 4px;display:flex;align-items:center;gap:10px;}
+.section-sub{font-size:12px;color:var(--muted);margin:0 0 20px;max-width:800px;}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:6px;display:block;}
+
+/* grid + cards */
+.grid{display:grid;gap:14px;}
+.grid.cols-2{grid-template-columns:repeat(2,1fr);}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+.grid.cols-4{grid-template-columns:repeat(4,1fr);}
+@media (max-width:1080px){.grid.cols-4,.grid.cols-3{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:680px){.grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr;}}
+.card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;}
+.card h3{font-family:var(--serif);font-size:14.5px;font-weight:600;margin:0 0 10px;}
+.card .stat{font-family:var(--mono);font-size:24px;color:var(--gold-soft);font-weight:600;}
+.card .stat-label{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid var(--border);letter-spacing:0.04em;text-transform:uppercase;}
+.badge .dot{width:6px;height:6px;border-radius:50%;}
+.badge.ok .dot{background:var(--green);} .badge.ok{color:var(--green);border-color:#2c4434;}
+.badge.warn .dot{background:var(--amber);} .badge.warn{color:var(--amber);border-color:#4a3c20;}
+.badge.bad .dot{background:var(--red);} .badge.bad{color:var(--red);border-color:#4a2925;}
+.badge.idle .dot{background:var(--muted-2);} .badge.idle{color:var(--muted);border-color:var(--border);}
+
+/* progress */
+.progress-track{height:6px;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:10px;overflow:hidden;margin:8px 0;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));}
+.progress-label{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);font-family:var(--mono);}
+
+/* field rows */
+.field-row{display:flex;justify-content:space-between;gap:14px;padding:6px 0;border-bottom:1px dashed var(--border-soft);font-size:12.5px;}
+.field-row:last-child{border-bottom:none;}
+.field-row .k{color:var(--muted);min-width:150px;}
+.field-row .v{color:var(--text-dim);text-align:right;}
+.field-list{font-size:12.5px;color:var(--text-dim);margin:6px 0 0;padding-left:16px;}
+.field-list li{margin-bottom:4px;}
+
+/* collapsible */
+details.collapse{border:1px solid var(--border);border-radius:var(--radius);background:var(--panel-2);margin-bottom:10px;}
+details.collapse > summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--serif);font-size:14.5px;font-weight:600;}
+details.collapse > summary::-webkit-details-marker{display:none;}
+details.collapse > summary::after{content:'+';font-family:var(--mono);color:var(--gold);font-size:16px;transition:transform .2s;}
+details.collapse[open] > summary::after{transform:rotate(45deg);}
+.collapse-body{padding:0 16px 16px;}
+
+/* gate ladder */
+.gate-ladder{display:flex;flex-direction:column;position:relative;margin:10px 0 4px;}
+.gate-rung{display:flex;gap:16px;align-items:flex-start;padding:14px 0;position:relative;}
+.gate-rung:not(:last-child)::before{content:'';position:absolute;left:18px;top:38px;bottom:-14px;width:1px;background:var(--border);}
+.gate-seal{width:37px;height:37px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--panel-2);color:var(--muted);z-index:1;}
+.gate-rung.complete .gate-seal{border-color:var(--green);color:var(--green);background:#101a14;}
+.gate-rung.active .gate-seal{border-color:var(--gold);color:var(--gold);background:#1c1709;box-shadow:0 0 0 3px rgba(201,162,75,0.12);}
+.gate-content{flex:1;padding-top:2px;}
+.gate-content h4{font-family:var(--serif);font-size:15px;margin:0 0 2px;}
+.gate-meta{font-size:11px;color:var(--muted);font-family:var(--mono);margin-bottom:8px;}
+
+/* tables */
+table.matrix{width:100%;border-collapse:collapse;font-size:12px;}
+table.matrix th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-dim);border-bottom:1px solid var(--border);padding:8px 10px;}
+table.matrix td{border-bottom:1px solid var(--border-soft);padding:9px 10px;color:var(--text-dim);vertical-align:top;}
+table.matrix tr:hover td{background:rgba(255,255,255,0.012);}
+.table-scroll{overflow-x:auto;}
+
+/* subtabs */
+.subtabbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.subtab-btn{background:var(--panel-2);border:1px solid var(--border);color:var(--muted);padding:7px 12px;border-radius:20px;font-size:11px;}
+.subtab-btn.active{border-color:var(--gold);color:var(--gold-soft);background:var(--panel-3);}
+.subtab-panel{display:none;}
+.subtab-panel.active{display:block;}
+
+/* forms */
+textarea, input[type=text]{width:100%;background:var(--bg-2);border:1px solid var(--border);color:var(--text);border-radius:var(--radius);padding:9px 11px;font-family:var(--sans);font-size:12.5px;resize:vertical;}
+textarea:focus, input[type=text]:focus{border-color:var(--gold-dim);}
+label.checkline{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text-dim);padding:6px 0;cursor:pointer;}
+input[type=checkbox]{accent-color:var(--gold);width:14px;height:14px;flex:none;}
+.field-block{margin-bottom:14px;}
+.field-block label.title{display:block;font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-dim);margin-bottom:6px;}
+
+/* philosophy chain */
+.stack{display:flex;flex-direction:column;gap:8px;max-width:780px;}
+.stack-layer{border:1px solid var(--border);background:var(--panel-2);padding:14px 18px;border-radius:var(--radius);}
+.stack-layer .layer-num{font-family:var(--mono);font-size:10px;color:var(--gold-dim);}
+.stack-layer h4{font-family:var(--serif);margin:2px 0 4px;font-size:14.5px;}
+.stack-layer p{margin:0;color:var(--muted);font-size:12px;}
+.stack-arrow{text-align:center;color:var(--muted-2);font-size:11px;font-family:var(--mono);}
+.final-instruction{
+  border:1px solid var(--gold-dim); background:linear-gradient(180deg,#1a1508,#12100a);
+  padding:20px 24px; border-radius:var(--radius); max-width:780px; margin-top:24px;
+}
+.final-instruction .fi-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);}
+.final-instruction p{font-family:var(--serif);font-size:15px;line-height:1.65;color:var(--gold-soft);margin:8px 0 0;}
+
+/* priorities */
+.priority-card{border:1px solid var(--border);background:linear-gradient(180deg,var(--panel-2),var(--panel));border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;}
+.priority-card .p-num{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.1em;}
+.priority-card h3{font-family:var(--serif);font-size:16px;margin:4px 0 4px;}
+.priority-card .p-why{font-size:12px;color:var(--muted);margin-bottom:10px;font-style:italic;}
+.check-item{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--border-soft);}
+.check-item:last-child{border-bottom:none;}
+.check-item .ci-text{font-size:13px;color:var(--text-dim);}
+.check-item .ci-note{font-size:11px;color:var(--muted-2);margin-top:1px;}
+.check-item input:checked ~ div .ci-text{color:var(--muted-2);text-decoration:line-through;}
+
+/* deep work grid */
+.dw-table{width:100%;border-collapse:collapse;}
+.dw-table th{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-dim);padding:8px 6px;border-bottom:1px solid var(--border);text-align:center;}
+.dw-table th:first-child{text-align:left;}
+.dw-table td{padding:10px 6px;border-bottom:1px solid var(--border-soft);text-align:center;}
+.dw-table td:first-child{text-align:left;font-size:12.5px;color:var(--text-dim);}
+.dw-mins{font-family:var(--mono);font-size:10px;color:var(--muted-2);}
+
+/* entry logs (decision journal, wrong-about, etc.) */
+.entry{border:1px solid var(--border);border-left:2px solid var(--gold-dim);background:var(--panel-2);border-radius:var(--radius);padding:13px 16px;margin-bottom:10px;}
+.entry .e-date{font-family:var(--mono);font-size:10.5px;color:var(--gold-dim);}
+.entry .e-head{font-family:var(--serif);font-size:14px;margin:3px 0 6px;color:var(--text);}
+.entry .e-field{font-size:12px;color:var(--text-dim);margin:3px 0;}
+.entry .e-field .e-k{color:var(--muted);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.06em;margin-right:6px;}
+.entry.seed{border-left-color:var(--border);opacity:0.85;}
+.entry .e-del{float:right;background:none;border:none;color:var(--muted-2);font-size:11px;}
+.entry .e-del:hover{color:var(--red);}
+.entry-form{border:1px dashed var(--border);border-radius:var(--radius);padding:14px 16px;margin-top:14px;background:var(--bg-2);}
+
+/* timeline */
+.timeline{display:flex;flex-direction:column;border-left:1px solid var(--border);margin-left:8px;padding-left:24px;}
+.tl-row{position:relative;padding:14px 0;}
+.tl-row::before{content:'';position:absolute;left:-29px;top:19px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--gold);}
+.tl-row .tl-label{font-family:var(--mono);font-size:10.5px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:0.08em;}
+.tl-row h4{font-family:var(--serif);margin:3px 0 4px;font-size:14.5px;}
+.tl-row ul{margin:4px 0 0;padding-left:16px;color:var(--text-dim);font-size:12px;}
+
+/* heat tags */
+.heat{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:3px;letter-spacing:.04em;}
+.heat.high{background:#3a1d1a;color:#e29186;}
+.heat.med{background:#3a2f15;color:#e3bf78;}
+.heat.low{background:#16301f;color:#86c79a;}
+
+/* repo trees */
+pre.tree{
+  background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px 18px;font-family:var(--mono);font-size:11.5px;line-height:1.7;color:var(--text-dim);
+  overflow-x:auto;white-space:pre;
+}
+
+.muted{color:var(--muted);}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.mt-24{margin-top:24px;}
+.small{font-size:11px;}
+.footer-note{margin-top:50px;padding-top:18px;border-top:1px solid var(--border);font-size:11px;color:var(--muted-2);font-family:var(--mono);}
+
+@media print{
+  header.command-header, nav.tabbar, .btn, .entry-form{display:none!important;}
+  .tab-panel{display:block!important;page-break-after:always;}
+  body{background:#fff;color:#000;}
+  .card,.gate-rung,.field-row,.entry{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<header class="command-header">
+  <div class="header-row">
+    <div class="brand-block">
+      <div class="seal">FHC</div>
+      <div class="brand-text">
+        <h1>Foundation House Capital — Executive Operating System</h1>
+        <div class="tagline">Foundation Phase 2026–2029 · Stewardship Precedes Accumulation · v2.0</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span class="readiness-pill" id="readinessPill">READINESS —</span>
+      <button class="btn" id="printBtn">Print / PDF</button>
+      <button class="btn primary" id="exportBtn">Export Snapshot</button>
+    </div>
+  </div>
+  <nav class="tabbar" id="tabbar"></nav>
+</header>
+
+<div class="shell">
+  <div id="panels"></div>
+  <div class="footer-note">
+    FHC EXECUTIVE OPERATING SYSTEM — edit <strong>data.json</strong> to update content · run sync_data.py after editing to refresh the inline fallback · editable fields persist via localStorage on this device only · "Copy as Markdown" buttons produce commit-ready artifacts for GitHub.
+    <div id="dataSourceNote" style="margin-top:4px;opacity:.7;">Data source: loading…</div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   DATA LAYER
+   ----------------------------------------------------------------
+   Primary source: data.json, fetched at load.
+   Fallback: the JSON injected between the markers below (used when
+   opened via file:// where fetch is blocked). Run sync_data.py
+   after editing data.json to keep the fallback in sync.
+   ================================================================ */
+const FALLBACK_DATA = /*==FALLBACK_START==*/{"meta": {"version": "2.0", "title": "Foundation House Capital — Executive Operating System", "briefSource": "FHC/Atlas Executive Brief for Claude (Final), July 2026"}, "overview": {"phase": "Foundation Phase (2026–2029)", "objective": "The objective is not to build Atlas yet — it is to become the man capable of building Atlas. Capability acquisition precedes scale.", "quarter": "Q3 2026", "theme": "Stop sharpening the ax. Start chopping the tree.", "readiness": 62, "priority": "Ship Episode 1: script → voiceover → edit → publish.", "bottleneck": "Episode 1 script not yet finalized — everything downstream in FSM waits on it.", "risk": "Making Atlas more sophisticated instead of making the steward more capable.", "unlock": "Episode 1 published + Mercury checking open + first full week of the daily deep work block.", "daysSinceReview": 4, "statuses": [{"label": "FSM — Episode 1", "state": "warn"}, {"label": "FHC — Financial Infra", "state": "warn"}, {"label": "Capability — Deep Work", "state": "idle"}, {"label": "Navy", "state": "ok"}, {"label": "Fitness", "state": "ok"}, {"label": "Finances", "state": "warn"}]}, "philosophy": {"chain": [{"n": "01", "title": "Source", "desc": "God. The origin of everything stewarded. Nothing below this layer is owned — only entrusted."}, {"n": "02", "title": "Stewardship", "desc": "The purpose. Stewardship precedes accumulation. Money is a tool. Freedom is the outcome. Stewardship is the purpose."}, {"n": "03", "title": "Foundation House Capital", "desc": "The vehicle. A house built to steward capital across generations — its greatest asset will never be its portfolio, but the quality of the people entrusted to steward it."}, {"n": "04", "title": "Atlas", "desc": "The externalization of Antoine's decision framework. It stewards attention, capital, time, knowledge, relationships, and opportunities. It remembers so Antoine can focus on family, deep work, stewardship, and service."}, {"n": "05", "title": "Flow State Macro", "desc": "The public voice. Macro education that teaches stewardship in public and funds the mission."}, {"n": "06", "title": "Assets", "desc": "The downstream result — capital, credentials, audience, land, businesses. Outputs, never the point."}, {"n": "07", "title": "Impact", "desc": "Family, service, community, generational roots. The reason the whole chain exists."}], "finalInstruction": "If Atlas must choose between becoming more sophisticated or helping Antoine become a better steward, always choose the latter. Every feature should simplify decisions, reinforce stewardship, preserve optionality, and free attention for relationships, family, service, deep work, and long-term impact.", "designConsequence": "This dashboard obeys the final instruction: no module exists here unless it simplifies a real recurring decision or preserves a lesson. Anything that becomes decoration gets deleted."}, "priorities": [{"id": "p1", "name": "Flow State Macro — Ship Episode 1", "why": "The content engine cannot exist until one episode exists. Publishing beats planning.", "items": [{"key": "p1_script", "text": "Finalize Episode 1 script", "note": "Raw writing → ChatGPT script build → Antoine voice edit"}, {"key": "p1_vo", "text": "Complete voiceover", "note": "ElevenLabs — Brian voice"}, {"key": "p1_edit", "text": "Edit Episode 1", "note": "CapCut"}, {"key": "p1_thumb", "text": "Create thumbnail", "note": "Canva"}, {"key": "p1_publish", "text": "Publish Episode 1", "note": "YouTube @flowstatemacro"}, {"key": "p1_engine", "text": "Build the long-term content engine", "note": "Nine-stage production workflow, 01 Research → 09 Archive, running weekly"}], "nextUnlock": "Episode 1 live → content engine cadence begins"}, {"id": "p2", "name": "Foundation House Capital — Financial Infrastructure", "why": "Clean books from Day One are the difference between a family office and a hobby. Auditability starts at the first dollar.", "items": [{"key": "p2_llc", "text": "Form the LLC", "note": "FlowStateMacro LLC (Wyoming) — formed"}, {"key": "p2_ein", "text": "Obtain EIN", "note": "Obtained"}, {"key": "p2_mercury", "text": "Open Mercury business checking", "note": "Post-Articles of Organization — in progress"}, {"key": "p2_card", "text": "Apply for Mercury business credit card", "note": "After checking is open"}, {"key": "p2_route", "text": "Route ALL business expenses through the business card", "note": "Zero personal/business mixing — ever"}, {"key": "p2_payfull", "text": "Pay the statement in full every month", "note": "Non-negotiable. No revolving balance."}, {"key": "p2_books", "text": "Establish bookkeeping from Day One", "note": "1 hr daily deep work block; books closed by the 5th of each month"}], "nextUnlock": "First full month of clean, closed books"}, {"id": "p3", "name": "Capability Building — Daily Deep Work", "why": "Foundation Phase objective: become the man capable of building Atlas. 3.5 hours a day, compounding for three years.", "items": [{"key": "p3_book", "text": "1 hour — Bookkeeping", "note": "Real FHC/FSM books, not tutorials"}, {"key": "p3_fsm", "text": "1 hour — FSM content creation", "note": "Script, record, edit — output-producing work only"}, {"key": "p3_code", "text": "1 hour — Coding with Claude", "note": "Small Atlas-building projects; learn by building"}, {"key": "p3_read", "text": "30 min — Reading", "note": "Bond Investing, Benjamin Graham, Financial Statement Analysis"}], "nextUnlock": "First unbroken 7-day deep work week"}], "deepWork": {"blocks": [{"label": "Bookkeeping", "minutes": 60}, {"label": "FSM Content", "minutes": 60}, {"label": "Coding with Claude", "minutes": 60}, {"label": "Reading", "minutes": 30}], "note": "3.5 hours daily. Check each block when completed. The grid tracks the current week — export a snapshot before the Sunday review to preserve the record, or log the week's totals in the CEO Letter."}, "kpis": [{"name": "Episode 1 pipeline stage", "current": "Script in progress", "target": "Published", "cadence": "Until shipped"}, {"name": "Deep work hours", "current": "0 / wk (starting)", "target": "24.5 hrs/wk (3.5 × 7)", "cadence": "Weekly"}, {"name": "Meaningful GitHub commits", "current": "1 / wk", "target": "≥ 1 / wk minimum, Sunday anchor", "cadence": "Weekly"}, {"name": "Business expenses routed through business card", "current": "N/A — card pending", "target": "100%", "cadence": "Monthly"}, {"name": "Statement paid in full", "current": "N/A — card pending", "target": "Yes, every month", "cadence": "Monthly"}, {"name": "Books closed by the 5th", "current": "Not yet started", "target": "Yes, every month", "cadence": "Monthly"}, {"name": "Reading minutes", "current": "~150 / wk", "target": "210 / wk", "cadence": "Weekly"}, {"name": "Bodyweight trend", "current": "245 lbs", "target": "205 lbs by June 2027", "cadence": "Weekly weigh-in"}, {"name": "War chest (SGOV → cash reserve)", "current": "Building toward $5K", "target": "$25K by May 2027", "cadence": "Monthly"}, {"name": "Decision Journal entries", "current": "0", "target": "≥ 1 meaningful entry / wk", "cadence": "Weekly"}], "antiGoals": [{"rule": "Do not build Atlas features that don't simplify a real decision", "why": "Atlas exists to reduce cognitive load, not to become another productivity app"}, {"rule": "No new tools if ChatGPT, Claude, Perplexity, GitHub, or Drive can already do it", "why": "Tool sprawl fragments the source of truth"}, {"rule": "No options positions without a defined timeline trigger", "why": "COP precedent — options require time certainty. Common stock only until a construction/launch date exists"}, {"rule": "No live capital deployment before allocation rules are documented", "why": "Rules before money. Gate discipline"}, {"rule": "No lifestyle inflation when debt clears", "why": "The $400–500/mo unlock routes to the war chest, not consumption"}, {"rule": "No trading outside the four locked instruments without prior review", "why": "XAUUSD, CL, COPPER, USDJPY. Consultation before expansion"}, {"rule": "Never mix personal and business expenses", "why": "Clean books from Day One — auditability is identity, not chore"}, {"rule": "Never skip the Weekly Executive Review two weeks in a row", "why": "The review is the immune system of the whole operation"}, {"rule": "Sophistication is never the goal", "why": "Stewardship is. Complexity must always justify itself against the final instruction"}], "decisionJournalSeeds": [{"date": "2026-06", "decision": "Dropped EOOW qualification pursuit", "reasoning": "Misaligned with May 2029 separation and LNG bridge career goals — prestige without strategic return", "expected": "Freed watch-qual study time redirects to CFA prep and deep work blocks", "review": "2026-12"}, {"date": "2026-06", "decision": "Retired Notion; GitHub is the single source of truth", "reasoning": "Two systems of record means zero systems of record. Version control beats convenience", "expected": "All artifacts committed within 48 hrs; no orphaned documents", "review": "2026-09"}], "opportunitySeeds": [{"opportunity": "Bangor GT Mech Tech shore duty billet", "source": "Direct CMC outreach + GSCS Colston advocacy", "stage": "Awaiting orders decision", "next": "Follow up if no response within 2 weeks"}, {"opportunity": "LSS Green Belt enrollment", "source": "Emily Graumann (contact)", "stage": "Queued for September 2026", "next": "Confirm enrollment window on shore duty start"}, {"opportunity": "SDSU BS Mathematics, Spring 2027", "source": "Jose Esparza (military admissions)", "stage": "Pre-application", "next": "Contact Esparza to confirm enrollment path and TA/GI Bill sequencing"}], "relationshipSeeds": [{"person": "GSCS Colston", "role": "Top snipe / advocate", "status": "Strong — actively vouching for Bangor billet", "next": "Keep informed on orders progress; express gratitude concretely"}, {"person": "CMC, TRIREFFAC Bangor", "role": "Orders decision influence", "status": "Outreach sent", "next": "Respectful follow-up if silent at 2 weeks"}, {"person": "Jose Esparza", "role": "SDSU military admissions", "status": "Contact established", "next": "Confirm Spring 2027 enrollment steps"}, {"person": "Home-ship mentor / best friend", "role": "Personal counsel", "status": "Strong", "next": "Regular contact through deployment end and homecoming"}, {"person": "Emily Graumann", "role": "LSS Green Belt contact", "status": "Identified", "next": "Reach out September 2026"}, {"person": "CPA (Stewardship Council seat 1)", "role": "Tax + bookkeeping oversight", "status": "Not yet identified", "next": "Begin search once Mercury checking is open — interview against the seven advisor criteria"}, {"person": "Business attorney (Council seat 2)", "role": "Entity + contract counsel", "status": "Not yet identified", "next": "Source candidates via Mercury/Wyoming registered agent network"}, {"person": "Banking relationship (Council seat 3)", "role": "Mercury business banking", "status": "In progress", "next": "Open checking, then establish a named point of contact"}, {"person": "Entrepreneurial mentor (Council seat 4)", "role": "Pattern recognition from someone further ahead", "status": "Not yet identified", "next": "Identify one candidate — evaluate on ability to teach and challenge assumptions"}], "knowledgeVault": {"activeReading": [{"title": "The Bond Book", "domain": "Fixed income foundations", "status": "Active"}, {"title": "Fixed Income Mathematics", "domain": "Duration, convexity, repo, TIPS — Level 2", "status": "Active"}, {"title": "Benjamin Graham — Interpretation of Financial Statements", "domain": "Financial statement analysis", "status": "Active"}], "curriculum": "The Steward's Curriculum (FHC-EDU-001 v1.0) — seven pillars: Philosophy, Economics, History, Law, Human Nature, Markets & Systems, Credentials. A governing document, not a casual reading list.", "captureRule": "Every book produces a notes file in /knowledge-vault/ in the repo. A book without committed notes doesn't count as read.", "location": "GitHub: /knowledge-vault/ · Drive: Foundation House Capital / 04 Knowledge"}, "ceoLetter": {"prompts": ["State of the mission — one honest paragraph", "What shipped this week (artifacts, not activity)", "The numbers — deep work hours, commits, KPIs moved", "Hardest decision made and how it was reasoned", "What I was wrong about or what surprised me", "Next week's single most important outcome", "A note on stewardship — was attention spent on what matters?"], "rule": "Written every Sunday after the intelligence pull. Copied to markdown and committed to /ceo-letters/ in the repo. The letter is written to the future board of Foundation House Capital — even while that board is one man."}, "returnMatrix": [{"domain": "Capital", "investment": "Clean books, war chest build, paper trading discipline", "expected": "A capital base with a verifiable audit trail from dollar one", "risk": "Overreach / speculation outside the locked instruments", "horizon": "5–10+ yrs", "action": "Open Mercury; route everything through the business card", "compounding": "Trust in the numbers compounds into trust from future advisors and investors"}, {"domain": "Time", "investment": "3.5 hr daily deep work block, Sunday review ritual", "expected": "Capability acquisition — the Foundation Phase objective itself", "risk": "Scattered focus; sharpening the ax instead of chopping", "horizon": "2026–2029", "action": "Protect the deep work block like a watch rotation", "compounding": "Skill stacks: bookkeeping × content × code × financial literacy"}, {"domain": "Energy", "investment": "Training streak, nutrition rules, sleep", "expected": "Execution capacity for everything above", "risk": "Deployment tempo disruption", "horizon": "12-month protocol", "action": "Hold the streak through homecoming; Phase 2 begins on return", "compounding": "Discipline in the body reinforces discipline in the books"}, {"domain": "Skill", "investment": "Daily coding, bookkeeping practice, CFA prep from Sept", "expected": "The man capable of building Atlas", "risk": "Tutorial consumption masquerading as capability", "horizon": "2026–2029", "action": "Build real things only — FHC books, FSM episodes, Atlas modules", "compounding": "Each real project makes the next one faster"}, {"domain": "Reputation", "investment": "Navy excellence + published episodes", "expected": "Public trust — the license for everything in Phase 2+", "risk": "Publishing delay; reputation can't compound at zero output", "horizon": "Ongoing", "action": "Ship Episode 1", "compounding": "Consistency compounds trust faster than intensity"}, {"domain": "Relationships", "investment": "Stewardship Council formation, command relationships, mentors", "expected": "The Council — FHC's actual greatest asset", "risk": "Building the council fast instead of slow; trust must precede responsibility", "horizon": "Phase 1: 2026–2029", "action": "Identify CPA candidates once Mercury is open", "compounding": "Trust compounds before responsibility does — by design"}, {"domain": "Spiritual alignment", "investment": "Stewardship filter on every decision; Source at the top of the chain", "expected": "Coherence — mission, money, and identity pointing the same direction", "risk": "Urgency overriding the filter", "horizon": "Lifelong", "action": "Run every major decision through the chain before executing", "compounding": "Alignment compounds into clarity and reduced regret"}], "gates": [{"id": "g0", "num": "0", "name": "Foundation Recovery", "status": "complete", "progress": 92, "desc": "Stabilize the base layer — nervous system, debt, consistency, mission clarity.", "done": ["Stabilize nervous system", "Rebuild daily consistency", "Clarify mission (stewardship chain established)", "Establish core documents (Constitution drafted)"], "missing": ["Final high-interest debt payoff (on track, August 2026)"], "next": ["Finish final payoff", "Route the $400–500/mo unlock to war chest — not lifestyle", "Archive Gate 0 retro in GitHub"], "risks": ["Payoff slips and delays the capital cadence"]}, {"id": "g1", "num": "I", "name": "Executive Infrastructure", "status": "active", "progress": 60, "desc": "The chopping begins: Episode 1 shipped, Mercury open, books running, daily deep work installed. This gate is about output, not architecture.", "done": ["GitHub repo live (400+ commits), Notion retired", "Drive architecture finalized", "LLC formed + EIN obtained", "Executive Operating System (this dashboard) built"], "missing": ["Episode 1 published", "Mercury checking + credit card open", "Bookkeeping running daily", "First unbroken deep work week", "First CEO Letter committed"], "next": ["Finalize Episode 1 script", "Open Mercury checking", "Start the deep work grid Monday"], "risks": ["Reverting to architecture-polishing instead of shipping"]}, {"id": "g2", "num": "II", "name": "Content Engine Running", "status": "upcoming", "progress": 8, "desc": "From one episode to a machine: weekly cadence, the nine-stage workflow running without heroics.", "done": ["EP2 raw writing started"], "missing": ["Episodes 2–5 scripted", "Weekly publish cadence held for 8 consecutive weeks", "FSM Weekly Content Intelligence feeding the pipeline"], "next": ["Queue EP2 script build after EP1 ships", "Lock a realistic publish day", "Define minimum viable episode standard"], "risks": ["Perfectionism breaking the cadence"]}, {"id": "g3", "num": "III", "name": "Capital Formation", "status": "future", "progress": 18, "desc": "Emergency fund complete, thesis tracker live, allocation rules documented, first allocation memo written.", "done": ["Paper trading live since June 1 (V3 + V4)", "War chest building via SGOV"], "missing": ["Emergency fund complete", "ATLAS thesis tracker in GitHub markdown", "Portfolio rules documented", "First capital allocation memo"], "next": ["Close debt (Aug 2026)", "Stand up thesis tracker in repo", "Draft first allocation memo (CCJ candidate)"], "risks": ["Speculative overreach before rules exist"]}, {"id": "g4", "num": "IV", "name": "Skill Credentialing", "status": "future", "progress": 10, "desc": "CFA L1, math degree enrollment, Python capability — the credentialed spine of the future allocator.", "done": ["CFA L1 plan filed (study from Sept 2026)", "Daily coding block installed (Gate I)"], "missing": ["CFA L1 prep underway", "SDSU/UCSD enrollment confirmed", "Accounting/tax/estate basics mapped", "Repeatable macro research workflow"], "next": ["Contact Jose Esparza", "Begin CFA study September 2026", "Keep the daily coding block unbroken"], "risks": ["Shore duty orders slippage compressing the education timeline"]}, {"id": "g5", "num": "V", "name": "Sovereign Vehicle", "status": "future", "progress": 5, "desc": "FHC formalized as a real structure: IPS complete, council Phase 2 seated, jurisdiction strategy professionally reviewed.", "done": ["Three-layer jurisdiction concept locked (Houston / Rocha / Mauritius)"], "missing": ["Investment Policy Statement", "Family office framework", "Trust/estate strategy reviewed with professionals", "Residency pathways formally researched"], "next": ["Begin Sovereign Base research thread", "Identify cross-border estate attorney (Council Phase 2)"], "risks": ["Structuring informally without professional review"]}, {"id": "g6", "num": "VI", "name": "Stewardship Expansion", "status": "future", "progress": 1, "desc": "The capital engine produces, the Council matures, and the mission expands into philanthropy and public leadership.", "done": [], "missing": ["Capital engine producing", "Council Phase 3 leadership", "Public trust established", "Philanthropic arm designed"], "next": ["No direct action — downstream of Gates I–V"], "risks": ["Skipping ahead conceptually instead of executing the current gate"]}], "council": {"principle": "Do not think of this as a financial team. Build a Stewardship Council. Foundation House Capital's greatest asset will never be its portfolio — it will be the quality of the people entrusted to steward it. Build this council slowly. Let trust compound before responsibility does.", "criteria": ["Technical competence", "Integrity", "Humility", "Long-term thinking", "Ability to teach", "Ability to challenge assumptions", "Alignment with stewardship"], "phases": [{"phase": "Phase 1 (2026–2029)", "status": "active", "seats": [{"role": "CPA", "status": "Not yet identified", "next": "Begin search once Mercury checking opens"}, {"role": "Business attorney", "status": "Not yet identified", "next": "Source via Wyoming registered agent / Mercury network"}, {"role": "Banking relationship", "status": "In progress (Mercury)", "next": "Open checking; establish named contact"}, {"role": "Entrepreneurial mentor", "status": "Not yet identified", "next": "Identify one candidate; evaluate on teaching + challenging"}]}, {"phase": "Phase 2", "status": "future", "seats": [{"role": "Estate planning attorney", "status": "Future", "next": "—"}, {"role": "Trust attorney", "status": "Future", "next": "—"}, {"role": "Insurance / risk advisor", "status": "Future", "next": "—"}, {"role": "Investment specialists (only where genuinely needed)", "status": "Future", "next": "—"}]}, {"phase": "Phase 3", "status": "future", "seats": [{"role": "CFO", "status": "Future", "next": "—"}, {"role": "Estate counsel", "status": "Future", "next": "—"}, {"role": "Philanthropy lead", "status": "Future", "next": "—"}, {"role": "Chief of staff", "status": "Future", "next": "—"}]}]}, "wrongAboutSeeds": [{"date": "2026-06", "belief": "USDJPY TTM Squeeze was pre-breakout energy about to fire", "reality": "The squeeze had already fired — the 40-year low at 162 confirmed the move was underway, not pending", "lesson": "Fundamentals lead, technicals confirm. The yield differential was the cause; the squeeze was the symptom. Filed as the founding argument for Atlas's macro intelligence layer."}, {"date": "2026-05", "belief": "EOOW qualification was worth pursuing for career capital", "reality": "It served a career path I'm not on — misaligned with May 2029 separation and the LNG bridge plan", "lesson": "Prestige that doesn't serve the mission is a cost, not an asset. Run qualifications through the sovereignty filter like everything else."}], "signalNoise": {"signals": ["JP10Y at 2.645% — above Goldman's 2.5% institutional threshold (Japan carry trade)", "GENIUS Act signed as Public Law 119-27 — programmable money thesis advancing", "USDJPY 160–162 rejection zone forming ahead of the November 2026 execution window", "T10Y2Y outperforming DXY as commodity-instrument filter (validated via the USDJPY case study)"], "noise": ["Daily USDJPY headline volatility inside the intervention-watch band", "Short-term AI-bubble commentary without position-relevant triggers", "Market commentary not tied to the four locked instruments"], "watchlist": ["XAUUSD", "CL", "COPPER", "USDJPY", "CCJ (uranium)", "LYB (winter 2026–27 catalyst)"], "decisionRequired": ["FXY Jan 2028 $62 call — confirm execution trigger at USDJPY 160–162 rejection", "COP — common stock only until Syria pipeline construction timeline is defined"], "noActionZone": ["AI bubble thesis — monitoring only", "Iran MoU — negotiation window still open"], "researchQueue": ["LYB winter 2026–27 catalyst window (most urgent equity research)", "DTCC/Canton October 2026 full launch — XRP vs RLUSD routing signal", "MOS / NTR agriculture inputs research"]}, "intelReports": [{"name": "ATLAS Weekly Intelligence Report", "purpose": "Macro, markets, thesis tracking, signal vs noise, paper trades", "freq": "Weekly", "when": "Sunday", "github": "active", "drive": "mirrored", "lastGen": "2026-06-28", "lastReviewed": "2026-06-28", "signals": "T10Y2Y filter validated; JP10Y above threshold", "actions": "Held FXY thesis; no new trades", "changedThesis": "Yes — T10Y2Y filter confirmed for V4"}, {"name": "FSM Weekly Content Intelligence Report", "purpose": "Content ideas, macro narratives, audience signals", "freq": "Weekly", "when": "Sunday", "github": "active", "drive": "mirrored", "lastGen": "2026-06-28", "lastReviewed": "pending", "signals": "Japan carry trade + Syria pipeline strongest hooks", "actions": "Prioritized EP3/EP4 topics", "changedThesis": "No"}, {"name": "FHC Weekly Capital Allocation Report", "purpose": "Allocation decisions + rule adherence", "freq": "Weekly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"}, {"name": "Sovereign Base / Residency Intelligence Report", "purpose": "Residency, tax, citizenship pathway changes", "freq": "Monthly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"}, {"name": "Infrastructure & Ground Lease Intelligence Report", "purpose": "Data center, energy, ground lease flow", "freq": "Monthly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"}, {"name": "Education / Credential Progress Report", "purpose": "Math/CFA/Python vs plan", "freq": "Monthly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"}, {"name": "Fitness / Body Operating Report", "purpose": "Rocky IV Protocol adherence + metrics", "freq": "Weekly (planned)", "when": "—", "github": "not started", "drive": "not started", "lastGen": "—", "lastReviewed": "—", "signals": "—", "actions": "—", "changedThesis": "—"}], "projects": {"fsm": {"label": "Flow State Macro", "icon": "FSM", "fields": {"Mission": "Macro education made public — the voice of stewardship.", "Current phase": "Executive Priority 1 — ship Episode 1", "Pipeline": "Raw writing (Antoine) → ChatGPT script → Antoine voice edit → ElevenLabs VO → CapCut → Canva → publish", "Episode 1": "Script in progress — the current bottleneck of the entire operation", "Episode 2": "Raw writing started", "Next 5 videos": "EP1 (origin), EP2 (algo build), EP3 (COP/Syria), EP4 (Japan carry trade), EP5 (TBD from intelligence)", "Channel": "@flowstatemacro — created, awaiting first upload", "Cadence": "Weekly target once EP1 ships; hold 8 consecutive weeks to close Gate II", "Next unlock": "Episode 1 published"}}, "fhc": {"label": "Foundation House Capital", "icon": "FHC", "fields": {"Mission": "Long-term sovereign capital vehicle and family office — the lived expression of stewardship.", "Current phase": "Executive Priority 2 — financial infrastructure", "Entity": "FlowStateMacro LLC (Wyoming) formed; EIN obtained", "Banking": "Mercury checking in progress → business credit card next", "Bookkeeping": "Daily 1-hr block; books closed by the 5th monthly", "Constitution": "Immutable FHC Constitution — drafted, to be finalized and committed", "Investment philosophy": "CAPE rotation framework + margin of safety documented", "Council": "Phase 1 forming — see Stewardship Council tab", "Next unlock": "First full month of clean, closed books"}}, "atlas": {"label": "Atlas", "icon": "ATL", "fields": {"Mission": "The externalization of Antoine's decision framework — stewards attention, capital, time, knowledge, relationships, opportunities.", "Current phase": "NOT being built yet — by design. Foundation Phase builds the builder.", "What exists now": "This Executive OS dashboard, the Sunday Perplexity pull, paper trading systems V3/V4, GitHub as memory", "Paper trades": "V3 (VP-ORB, OANDA, 38.30% WR, +121%) · V4 (MT5, T10Y2Y filter, 35.76% WR, +130%) — live since June 1", "Locked instruments": "XAUUSD, CL, COPPER, USDJPY", "Automation rule": "No signals without authorization; execution automation requires 90 days validated paper trading", "Next unlock": "Atlas module development begins December 2026 (shore duty), fed by six months of deep work capability"}}, "navy": {"label": "Navy / Career", "icon": "NAVY", "fields": {"Status": "GSM2(SW), deployed, ~1 month to homecoming", "Separation": "May 2029", "Orders goal": "GT Mech Tech billet, Bangor WA — outreach sent to CMC with GSCS Colston vouching", "Fallback": "San Diego (NAB Coronado) as previously documented", "Shore duty": "Begins December 2026", "Reputation": "High — command relationships actively cultivated", "Next unlock": "Orders confirmed"}}, "education": {"label": "Education / Credentials", "icon": "EDU", "fields": {"Path": "BS Mathematics — SDSU/UCSD target, Spring 2027 (UMGC fallback)", "CFA Level 1": "Study begins September 2026; exam target May 2027", "Python": "Daily 1-hr coding block with Claude + exercism.io", "LSS Green Belt": "September 2026 enrollment (Emily Graumann)", "Curriculum": "The Steward's Curriculum — FHC-EDU-001 v1.0", "Next unlock": "Esparza confirms SDSU enrollment path"}}, "finance": {"label": "Finances", "icon": "FIN", "fields": {"High-interest debt": "Final stretch — August 2026 payoff", "Post-payoff rule": "$400–500/mo routes to war chest, not lifestyle (anti-goal)", "War chest": "$25K by May 2027; SGOV building to $5K first", "TSP": "C60/I20/G20", "Brokerage": "COPX, IAU, PSLV, XYL, VWO, SGOV", "Crypto": "XRP building toward 1,000 before Oct 2026; 25/75 profit split framework locked", "Next unlock": "Debt payoff complete"}}, "fitness": {"label": "Fitness / Body", "icon": "FIT", "fields": {"Protocol": "Rocky IV — 245 → 205 lbs by June 2027", "Current": "Near-daily training since June 1; Sessions A/B/C + weather deck circuit + Sunday Yin yoga", "Nutrition": "No snacks / no desserts since July 1", "Ship stack": "L-Citrulline + creatine only (full herb protocol is home-only)", "Phase 2": "Homecoming — full gym, alkaline protocol begins", "Phase 3": "Judo + Boxing", "Next unlock": "Homecoming"}}, "personal": {"label": "Personal / Spiritual / Leadership", "icon": "PSL", "fields": {"Identity": "Steward, builder, teacher, operator", "Filter": "Does this increase or decrease sovereignty?", "Faith": "Source at the top of the chain — everything below is entrusted, not owned", "Relationships": "Evaluate demonstrated reality, not projected potential (self-named pattern, actively corrected)", "Leadership": "Built through Navy command + FSM teaching voice; public office preparation is a far-horizon file", "Next unlock": "Ongoing discipline layer — no gate"}}}, "weeklyReview": {"prompts": [{"key": "wr_completed", "q": "What did I complete this week? (Artifacts, not activity)"}, {"key": "wr_moved", "q": "What moved the mission forward?"}, {"key": "wr_avoided", "q": "What did I avoid?"}, {"key": "wr_bottleneck", "q": "What is the current bottleneck?"}, {"key": "wr_leverage", "q": "What is the highest-leverage action next week?"}, {"key": "wr_cut", "q": "What needs to be deleted, delegated, automated, or delayed?"}, {"key": "wr_learned", "q": "What did I learn?"}, {"key": "wr_decision", "q": "What decision needs to be made? (Log it in the Decision Journal)"}, {"key": "wr_wrong", "q": "Was I wrong about anything this week? (Log it in Things I Was Wrong About)"}, {"key": "wr_compound", "q": "What is one thing that compounds if repeated weekly?"}], "checks": [{"key": "wr_chk_sunday", "label": "Sunday Perplexity intelligence pull completed"}, {"key": "wr_chk_github", "label": "GitHub commit made this week"}, {"key": "wr_chk_deepwork", "label": "Deep work grid reviewed — hours counted honestly"}, {"key": "wr_chk_trades", "label": "Paper trades logged (V3 / V4)"}, {"key": "wr_chk_books", "label": "Bookkeeping current — no unrecorded transactions"}, {"key": "wr_chk_ceo", "label": "CEO Letter written and committed"}, {"key": "wr_chk_training", "label": "Training sessions completed as planned"}, {"key": "wr_chk_gates", "label": "Gate progress reviewed and updated"}]}, "documents": [{"name": "FHC Constitution (immutable)", "status": "draft", "location": "both", "updated": "2026-06-08", "next": "Finalize and commit — after ratification it does not change"}, {"name": "FHC Investment Philosophy", "status": "active", "location": "both", "updated": "2026-06-20", "next": "Add margin-of-safety case studies"}, {"name": "FHC Investment Policy Statement", "status": "not started", "location": "—", "updated": "—", "next": "Draft outline in Gate III"}, {"name": "Anti-Goals Register", "status": "active", "location": "GitHub", "updated": "2026-07-02", "next": "Commit from this dashboard; review quarterly"}, {"name": "Decision Journal", "status": "active", "location": "GitHub", "updated": "2026-07-02", "next": "≥1 entry weekly; commit as markdown"}, {"name": "Things I Was Wrong About", "status": "active", "location": "GitHub", "updated": "2026-07-02", "next": "Review monthly — preserve lessons, not ego"}, {"name": "Weekly CEO Letters", "status": "active", "location": "GitHub", "updated": "—", "next": "First letter this Sunday"}, {"name": "Stewardship Council Charter", "status": "not started", "location": "—", "updated": "—", "next": "Draft the seven criteria + phase plan as a standalone doc"}, {"name": "FSM Editorial Constitution", "status": "draft", "location": "GitHub", "updated": "2026-06-15", "next": "Lock voice/tone rules"}, {"name": "FSM Constitution", "status": "draft", "location": "both", "updated": "2026-06-12", "next": "Finalize tone section"}, {"name": "ATLAS Operating Manual", "status": "draft", "location": "GitHub", "updated": "2026-06-18", "next": "Deferred — Atlas build begins Dec 2026"}, {"name": "ATLAS Thesis Tracker", "status": "needs review", "location": "GitHub", "updated": "2026-06-22", "next": "Convert to markdown table"}, {"name": "ATLAS Weekly Reports", "status": "active", "location": "both", "updated": "2026-06-28", "next": "Maintain Sunday cadence"}, {"name": "Personal Constitution", "status": "draft", "location": "Drive", "updated": "2026-06-01", "next": "Review quarterly"}, {"name": "Stewardship Philosophy", "status": "canonical", "location": "both", "updated": "2026-05-30", "next": "Reference document — stable"}, {"name": "The Steward's Curriculum (FHC-EDU-001)", "status": "canonical", "location": "both", "updated": "2026-06-25", "next": "Execute, don't revise"}], "timeline": [{"label": "Now", "title": "Chop the tree", "items": ["Finalize Episode 1 script", "Open Mercury checking", "Start the deep work grid", "Commit this Executive OS to GitHub"]}, {"label": "Next 30 Days", "title": "First artifacts shipped", "items": ["Episode 1 published", "Business credit card active, expenses routed", "First CEO Letter committed", "High-interest debt payoff (August)"]}, {"label": "Next 90 Days", "title": "Cadence installed", "items": ["Weekly publish cadence holding", "First full month of closed books", "CFA L1 study begins (September)", "Bangor orders resolved"]}, {"label": "6 Months", "title": "Shore duty transition", "items": ["Shore duty begins (December 2026)", "Atlas module development begins", "Council Phase 1: CPA identified"]}, {"label": "1 Year", "title": "Capability compounding", "items": ["CFA L1 exam (May 2027)", "SDSU/UCSD enrollment (Spring 2027)", "War chest at $25K", "FXY thesis window resolved"]}, {"label": "3 Years", "title": "Foundation Phase closes", "items": ["Separation from Navy (May 2029)", "The man capable of building Atlas exists", "Council Phase 1 complete and trusted"]}, {"label": "5 Years", "title": "Sovereign vehicle forming", "items": ["FHC structure professionally reviewed", "Three-passport strategy underway", "Senior thesis window (SSRN before outside capital)"]}, {"label": "10 Years", "title": "Stewardship expansion", "items": ["Capital engine producing", "Council Phase 2–3 maturing", "Boring business acquisitions (data center belt / Research Triangle)"]}, {"label": "Age 50 Vision", "title": "Full family office", "items": ["FHC fully operational — stewardship and compounding phase", "Generational base in Rocha", "The Council stewards more than the founder does"]}], "risks": [{"name": "Sophistication over stewardship", "severity": "high", "prob": "med", "warning": "Adding a dashboard feature or system that doesn't simplify a real decision", "counter": "The final instruction is a design law — audit every module against it quarterly"}, {"name": "Overbuilding and not shipping", "severity": "high", "prob": "high", "warning": "Another week of architecture with no published episode", "counter": "Episode 1 is Executive Priority 1 — nothing new gets built until it ships"}, {"name": "Tutorial consumption masquerading as capability", "severity": "med", "prob": "med", "warning": "Deep work hours logged but no artifact produced", "counter": "Every block must touch a real thing: real books, real script, real code"}, {"name": "Mixing personal and business expenses", "severity": "high", "prob": "low", "warning": "A single purchase on the wrong card", "counter": "Business card for business, period — anti-goal, no exceptions"}, {"name": "Financial overreach", "severity": "high", "prob": "low", "warning": "Considering live capital before rules are documented", "counter": "Gate III unlock criteria enforced"}, {"name": "Macro thesis overconfidence", "severity": "med", "prob": "med", "warning": "Treating a thesis as confirmed before its timeline trigger", "counter": "COP precedent — defined timeline before options exposure"}, {"name": "Building the Council too fast", "severity": "med", "prob": "low", "warning": "Granting responsibility before trust has compounded", "counter": "Phase discipline — Phase 1 is four seats only, built slowly"}, {"name": "Burnout", "severity": "high", "prob": "med", "warning": "Deployment + deep work + training with no rest built in", "counter": "Sunday is review and rest, not raw production"}, {"name": "Cadence collapse after Episode 1", "severity": "high", "prob": "med", "warning": "EP1 ships, then three weeks of silence", "counter": "EP2 script build queued to start the day EP1 publishes"}, {"name": "Emotional distractions", "severity": "med", "prob": "med", "warning": "Projecting potential beyond demonstrated reality", "counter": "Same evidence standard for relationships as for theses"}, {"name": "Not committing artifacts to GitHub", "severity": "high", "prob": "med", "warning": "A finished file living only on a device or in a chat", "counter": "48-hour commit rule — if it isn't in the repo, it doesn't exist"}], "repo": {"repoName": "antoinehicks23/FlowStateMacro", "lastCommit": "2026-06-28", "dashboardVersion": "v2.0 — Executive Operating System", "weeklyGoal": "Minimum 1 meaningful commit per week, anchored to the Sunday review", "commitRules": ["48-hour rule: every finished artifact is committed within 48 hours or it doesn't exist", "Sunday anchor: intelligence pull → dashboard update → CEO Letter → commit, every week", "Auditability: every meaningful decision produces a committed artifact — a Decision Journal entry, an allocation memo, or a CEO Letter paragraph", "Drive mirrors GitHub for human-readable sharing (attorneys, CPA); GitHub is truth, Drive is presentation", "DRIVE_INDEX.md is the bridge — update it whenever a canonical document moves or is added"], "githubStructure": "FlowStateMacro/\n├── atlas-dashboard/          ← this Executive OS (index.html, data.json, README)\n├── governing-documents/      ← FHC Constitution, Editorial Constitution, Steward's Curriculum\n├── decision-journal/         ← one markdown file per month (2026-07.md ...)\n├── ceo-letters/              ← one markdown file per week (2026-W27.md ...)\n├── wrong-about/              ← WRONG_ABOUT.md — the permanent error ledger\n├── council/                  ← charter, advisor evaluations, meeting notes\n├── opportunities/            ← pipeline notes, one file per live opportunity\n├── knowledge-vault/          ← book notes — a book without notes doesn't count\n├── atlas/                    ← system code, thesis tracker, weekly report archive\n├── FHC/                      ← bookkeeping exports, allocation memos, IPS drafts\n├── content/                  ← FSM scripts, episode assets, production files\n├── Journals/                 ← Daily + Weekly subfolders (existing)\n├── Archives/                 ← retired documents (existing)\n├── DRIVE_INDEX.md            ← bridge to Drive\n└── SCRATCH.md                ← open threads, one line each, cleared weekly", "driveStructure": "Google Drive/\n├── FlowStateMacro YT Content/     (00–05, existing nine-stage workflow)\n│   └── ...\n└── Foundation House Capital/      (00–05, existing)\n    ├── 00 Governing Documents     ← human-readable copies for professionals\n    ├── 01 Bookkeeping             ← monthly closes, statements, receipts\n    ├── 02 Council                 ← advisor-facing materials\n    ├── 03 Allocation Memos\n    ├── 04 Knowledge               ← reading notes mirror\n    └── 05 Archive", "filesToCommit": ["/atlas-dashboard/index.html (v2)", "/atlas-dashboard/data.json (v2)", "/atlas-dashboard/README.md (v2)", "/atlas-dashboard/sync_data.py", "/wrong-about/WRONG_ABOUT.md (seed from dashboard)", "/decision-journal/2026-07.md (seed from dashboard)"], "backlog": ["GitHub Pages deployment", "Weekly report parser feeding data.json", "CSV paper-trade log import", "Bookkeeping export integration"]}, "sovereignBases": [{"country": "Uruguay", "role": "Long-term roots / peaceful sovereign base — generational home (Rocha)", "residency": "Straightforward pathway for US citizens", "citizenship": "~3 yrs residency-based (research stage)", "tax": "Territorial — foreign income largely exempt", "banking": "Strong private banking access", "legal": "Stable rule of law, high regional ranking", "property": "Full foreign ownership rights", "roots": "High — the generational home", "culture": "Spanish; strong fit reported", "timezone": "US East Coast aligned", "safety": "High for the region", "climate": "Temperate, coastal", "business": "Reasonably friendly", "capitalControls": "None significant", "pros": "Peaceful, stable, territorial tax, roots", "cons": "Smaller economy; far from Mauritius ops", "status": "Confirmed top LatAm jurisdiction", "next": "Formal residency research with an immigration attorney (Council Phase 2 adjacency)", "frontrunner": true}, {"country": "Mauritius", "role": "FHC operating jurisdiction — GBC fund domicile", "residency": "Investor/occupation permits under research", "citizenship": "~2034–2035 per sequencing", "tax": "Favorable GBC treatment", "banking": "Strong for fund structures", "legal": "Stable, fund-friendly", "property": "Approved-scheme ownership", "roots": "Low — operational base only", "culture": "English-speaking, low friction", "timezone": "Poor US overlap — ops only", "safety": "Good", "climate": "Tropical island", "business": "Purpose-built for international funds", "capitalControls": "Minimal for GBC", "pros": "Simultaneous visa-free China/Russia/Schengen/UK — key to 3-passport strategy", "cons": "Not a living base", "status": "Active research candidate", "next": "GBC formation requirements deep-dive", "frontrunner": false}, {"country": "Cape Verde", "role": "Cultural / family root-building interest", "residency": "Under-researched", "citizenship": "Needs diligence", "tax": "Needs diligence", "banking": "Limited", "legal": "Developing", "property": "Needs diligence", "roots": "Cultural interest, unsubstantiated", "culture": "Portuguese/Creole pull", "timezone": "Good US overlap", "safety": "Stable for region", "climate": "Island, arid/tropical", "business": "Unclear", "capitalControls": "Unclear", "pros": "Cultural/family pull", "cons": "Needs serious diligence", "status": "Interest noted only", "next": "No time until Gate IV+", "frontrunner": false}, {"country": "Portugal", "role": "Optionality / Europe access", "residency": "Established pathways (verify post-regime-changes)", "citizenship": "~5 yrs, verify current", "tax": "Regime in flux — verify", "banking": "Strong EU access", "legal": "Stable EU state", "property": "Open to foreigners", "roots": "Moderate", "culture": "Portuguese; EU lifestyle", "timezone": "Decent US overlap", "safety": "High", "climate": "Mediterranean", "business": "EU-standard", "capitalControls": "None", "pros": "EU access; language bridge to Cape Verde interest", "cons": "Tax rules in flux", "status": "Optionality only", "next": "Verify current regime before relying on old data", "frontrunner": false}, {"country": "Switzerland", "role": "Wealth architecture reference standard", "residency": "Difficult non-EU", "citizenship": "Long, restrictive", "tax": "High nominal, sophisticated structuring", "banking": "Best-in-class reference", "legal": "Extremely stable", "property": "Canton-restricted", "roots": "Low", "culture": "High cost, high barrier", "timezone": "Poor US overlap", "safety": "Very high", "climate": "Alpine", "business": "Excellent, expensive", "capitalControls": "None", "pros": "The benchmark for FHC banking design", "cons": "Not a realistic residency target", "status": "Reference only", "next": "Benchmark when designing FHC banking relationships", "frontrunner": false}, {"country": "United States", "role": "Operational anchor — Navy, education, Houston asset", "residency": "Citizen", "citizenship": "Citizen", "tax": "Worldwide taxation — the problem the other layers solve", "banking": "Full access; Mercury + Houston anchor", "legal": "Stable", "property": "Full rights — Houston anchor/Airbnb", "roots": "Career + family of origin", "culture": "Native", "timezone": "Home", "safety": "Varies", "climate": "Varies", "business": "Strong, especially Texas", "capitalControls": "None domestic", "pros": "Career, education, anchor asset in place", "cons": "Worldwide taxation", "status": "Active anchor", "next": "Maintain while building Uruguay/Mauritius layers", "frontrunner": false}], "aiTeam": [{"tool": "ChatGPT", "role": "Philosophy, strategy, synthesis, writing, reflection, decision architecture", "bestUse": "FSM vision + scripts from raw writing", "projects": "Episode 1 script build", "output": "Drive / GitHub", "risk": "Using it for technical architecture it isn't suited for", "verify": "Cross-check against ATLAS data sources", "upgrade": "Tighter raw-writing → script handoff template"}, {"tool": "Claude", "role": "Code, dashboards, GitHub architecture, technical documentation — Chief of Staff", "bestUse": "This Executive OS, Atlas modules, daily coding block partner", "projects": "Executive OS v2, deep work coding projects", "output": "GitHub", "risk": "Building infrastructure indefinitely instead of shipping", "verify": "48-hour commit rule on every artifact", "upgrade": "Atlas module development from December 2026"}, {"tool": "Perplexity", "role": "Live research, weekly intelligence, source-backed monitoring", "bestUse": "Sunday ATLAS + FSM pulls", "projects": "Weekly intelligence programs", "output": "GitHub markdown", "risk": "Treating every signal as actionable", "verify": "Route through Signal vs Noise before acting", "upgrade": "Stand up the 5 planned reports as phases unlock"}, {"tool": "GitHub", "role": "Version-controlled source of truth — Atlas's memory", "bestUse": "Every canonical artifact", "projects": "antoinehicks23/FlowStateMacro", "output": "—", "risk": "Artifacts built elsewhere never landing in the repo", "verify": "Weekly commit goal + Sunday anchor", "upgrade": "GitHub Pages for live dashboard"}, {"tool": "Google Drive", "role": "Human-readable mirror for professionals (CPA, attorneys)", "bestUse": "Council-facing documents, bookkeeping files", "projects": "FHC 00–05 structure", "output": "—", "risk": "Drift between Drive and GitHub", "verify": "DRIVE_INDEX.md kept current", "upgrade": "Automate sync checks"}, {"tool": "Notion / new tools", "role": "Retired / blocked by anti-goal", "bestUse": "None", "projects": "None", "output": "—", "risk": "Reintroducing sprawl", "verify": "—", "upgrade": "A new tool must close a gap the five-stack cannot — otherwise no"}]}/*==FALLBACK_END==*/;
+
+let DATA = FALLBACK_DATA;
+let dataSource = "fallback (inline)";
+
+async function loadData(){
+  try{
+    const res = await fetch("data.json", {cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    DATA = await res.json();
+    dataSource = "data.json";
+  }catch(err){
+    DATA = FALLBACK_DATA;
+    dataSource = "fallback (inline) — data.json fetch failed: " + err.message;
+  }
+}
+
+/* ================================================================
+   PERSISTENCE HELPERS (localStorage)
+   ================================================================ */
+const LS_PREFIX = "fhc_eos_";
+function lsGet(key, fallback){ const v = localStorage.getItem(LS_PREFIX+key); return v===null ? fallback : v; }
+function lsSet(key, val){ localStorage.setItem(LS_PREFIX+key, val); }
+function lsGetJSON(key, fallback){ try{ const v = localStorage.getItem(LS_PREFIX+key); return v===null? fallback : JSON.parse(v);}catch(e){return fallback;} }
+function lsSetJSON(key, val){ localStorage.setItem(LS_PREFIX+key, JSON.stringify(val)); }
+
+function el(tag, cls, html){ const e = document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML = html; return e; }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function badge(state, label){ return `<span class="badge ${state}"><span class="dot"></span>${label}</span>`; }
+function progressBar(pct){ return `<div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div><div class="progress-label"><span>Progress</span><span>${pct}%</span></div>`; }
+function renderFieldRows(fields){
+  let out = '<div class="field-block">';
+  for(const k in fields) out += `<div class="field-row"><span class="k">${k}</span><span class="v">${fields[k]}</span></div>`;
+  return out + '</div>';
+}
+function bindPersistentTextareas(scope){
+  scope.querySelectorAll("textarea[data-lskey]").forEach(ta=>{
+    ta.value = lsGet(ta.dataset.lskey, "");
+    ta.addEventListener("input", ()=> lsSet(ta.dataset.lskey, ta.value));
+  });
+}
+function bindPersistentCheckboxes(scope){
+  scope.querySelectorAll("input[type=checkbox][data-lskey]").forEach(cb=>{
+    cb.checked = lsGet(cb.dataset.lskey, "false") === "true";
+    cb.addEventListener("change", ()=> lsSet(cb.dataset.lskey, cb.checked ? "true" : "false"));
+  });
+}
+function copyToClipboard(text, btn){
+  const done = ()=>{ const old = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(()=>btn.textContent=old, 1500); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
+  } else fallbackCopy(text, done);
+}
+function fallbackCopy(text, done){
+  const ta = document.createElement("textarea");
+  ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); done(); }catch(e){ alert("Copy failed — select and copy manually."); }
+  ta.remove();
+}
+/* ISO-ish week key so the deep work grid tracks the current week */
+function weekKey(){
+  const d = new Date();
+  const jan1 = new Date(d.getFullYear(),0,1);
+  const week = Math.ceil((((d - jan1) / 86400000) + jan1.getDay() + 1) / 7);
+  return d.getFullYear() + "-W" + String(week).padStart(2,"0");
+}
+
+/* ================================================================
+   GENERIC ENTRY LOG COMPONENT
+   Used by: Decision Journal, Opportunity Pipeline, Relationship
+   Capital, Things I Was Wrong About. Seeds come from data.json;
+   new entries persist to localStorage; "Copy as Markdown" produces
+   a commit-ready artifact (auditability rule).
+   ================================================================ */
+function renderEntryLog(container, cfg){
+  // cfg: {lsKey, seeds, fields:[{key,label,wide}], headField, mdTitle, mdPath}
+  const wrap = el("div","");
+  container.appendChild(wrap);
+
+  function entries(){ return lsGetJSON(cfg.lsKey, []); }
+
+  function draw(){
+    wrap.innerHTML = "";
+    const top = el("div","flex-between");
+    top.innerHTML = `<span class="eyebrow" style="margin:0">${cfg.mdTitle}</span>`;
+    const copyBtn = el("button","btn small","Copy as Markdown");
+    copyBtn.addEventListener("click", ()=> copyToClipboard(toMarkdown(), copyBtn));
+    top.appendChild(copyBtn);
+    wrap.appendChild(top);
+    if(cfg.mdPath) wrap.appendChild(el("p","small muted", "Commit destination: <span style='font-family:var(--mono)'>"+cfg.mdPath+"</span>"));
+
+    (cfg.seeds||[]).forEach(s=> wrap.appendChild(entryCard(s, true)));
+    entries().forEach((s,i)=> wrap.appendChild(entryCard(s, false, i)));
+
+    const form = el("div","entry-form");
+    let fhtml = `<span class="eyebrow">New entry</span>`;
+    cfg.fields.forEach(f=>{
+      fhtml += `<div class="field-block"><label class="title">${f.label}</label>${f.wide?`<textarea rows="2" data-fkey="${f.key}"></textarea>`:`<input type="text" data-fkey="${f.key}">`}</div>`;
+    });
+    form.innerHTML = fhtml;
+    const addBtn = el("button","btn primary small","Add entry");
+    addBtn.addEventListener("click", ()=>{
+      const entry = {};
+      let hasContent = false;
+      form.querySelectorAll("[data-fkey]").forEach(inp=>{
+        entry[inp.dataset.fkey] = inp.value.trim();
+        if(inp.value.trim()) hasContent = true;
+      });
+      if(!hasContent) return;
+      if(!entry.date) entry.date = new Date().toISOString().slice(0,10);
+      const arr = entries(); arr.push(entry); lsSetJSON(cfg.lsKey, arr);
+      draw();
+    });
+    form.appendChild(addBtn);
+    wrap.appendChild(form);
+  }
+
+  function entryCard(e, isSeed, idx){
+    const card = el("div","entry"+(isSeed?" seed":""));
+    let html = "";
+    if(!isSeed){
+      html += `<button class="e-del" data-idx="${idx}" title="Delete entry">delete</button>`;
+    }
+    html += `<div class="e-date">${esc(e.date||"")}${isSeed?" · seeded from data.json":""}</div>`;
+    html += `<div class="e-head">${esc(e[cfg.headField]||"")}</div>`;
+    cfg.fields.forEach(f=>{
+      if(f.key===cfg.headField || f.key==="date") return;
+      if(e[f.key]) html += `<div class="e-field"><span class="e-k">${f.label}</span>${esc(e[f.key])}</div>`;
+    });
+    card.innerHTML = html;
+    const del = card.querySelector(".e-del");
+    if(del) del.addEventListener("click", ()=>{
+      if(!confirm("Delete this entry? (Seeded entries in data.json are not affected.)")) return;
+      const arr = entries(); arr.splice(idx,1); lsSetJSON(cfg.lsKey, arr); draw();
+    });
+    return card;
+  }
+
+  function toMarkdown(){
+    let md = `# ${cfg.mdTitle}\n\n_Exported ${new Date().toISOString().slice(0,10)} from the FHC Executive OS_\n\n`;
+    const all = [...(cfg.seeds||[]), ...entries()];
+    all.forEach(e=>{
+      md += `## ${e.date||"undated"} — ${e[cfg.headField]||""}\n\n`;
+      cfg.fields.forEach(f=>{
+        if(f.key===cfg.headField || f.key==="date") return;
+        if(e[f.key]) md += `**${f.label}:** ${e[f.key]}\n\n`;
+      });
+      md += `---\n\n`;
+    });
+    return md;
+  }
+
+  draw();
+}
+
+/* ================================================================
+   TABS
+   ================================================================ */
+const TABS = [
+  {id:"overview", label:"Overview", render:renderOverview},
+  {id:"philosophy", label:"Philosophy", render:renderPhilosophy},
+  {id:"priorities", label:"Priorities", render:renderPriorities},
+  {id:"deepwork", label:"Deep Work", render:renderDeepWork},
+  {id:"gates", label:"Gates", render:renderGates},
+  {id:"systems", label:"Exec Systems", render:renderSystems},
+  {id:"wrong", label:"Wrong About", render:renderWrongAbout},
+  {id:"weekly", label:"Weekly Review", render:renderWeeklyReview},
+  {id:"intel", label:"Intelligence", render:renderIntelligence},
+  {id:"council", label:"Council", render:renderCouncil},
+  {id:"projects", label:"Projects", render:renderProjects},
+  {id:"docs", label:"Documents", render:renderDocuments},
+  {id:"timeline", label:"Timeline", render:renderTimeline},
+  {id:"risks", label:"Risks", render:renderRisks},
+  {id:"repo", label:"Repo & Drive", render:renderRepo},
+  {id:"sovereign", label:"Sovereign Base", render:renderSovereign},
+  {id:"aiteam", label:"AI Team", render:renderAITeam},
+];
+
+function buildShell(){
+  const tabbar = document.getElementById("tabbar");
+  const panels = document.getElementById("panels");
+  TABS.forEach((t,i)=>{
+    const btn = el("button","tab-btn"+(i===0?" active":""), t.label);
+    btn.dataset.tab = t.id;
+    btn.addEventListener("click", ()=>activateTab(t.id));
+    tabbar.appendChild(btn);
+    const panel = el("section","tab-panel"+(i===0?" active":""));
+    panel.id = "panel-"+t.id;
+    panels.appendChild(panel);
+  });
+}
+function activateTab(id){
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active", b.dataset.tab===id));
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.toggle("active", p.id==="panel-"+id));
+}
+function renderAll(){
+  TABS.forEach(t=>{ const p = document.getElementById("panel-"+t.id); p.innerHTML=""; t.render(p); });
+  document.getElementById("readinessPill").textContent = "READINESS " + DATA.overview.readiness + "%";
+}
+
+/* ---------------- OVERVIEW ---------------- */
+function renderOverview(panel){
+  const o = DATA.overview;
+  panel.innerHTML = `
+    <span class="eyebrow">Executive Overview</span>
+    <h2 class="section-title">Command Summary</h2>
+    <p class="section-sub" style="font-family:var(--serif);font-size:13.5px;color:var(--text-dim);">${o.objective}</p>
+    <div class="grid cols-4">
+      <div class="card"><h3>Current Phase</h3><div style="font-family:var(--serif);font-size:16px;color:var(--gold-soft)">${o.phase}</div></div>
+      <div class="card"><h3>Current Quarter</h3><div class="stat">${o.quarter}</div></div>
+      <div class="card"><h3>Readiness Score</h3><div class="stat">${o.readiness}%</div>${progressBar(o.readiness)}</div>
+      <div class="card"><h3>Days Since Last Review</h3><div class="stat">${o.daysSinceReview}</div><div class="stat-label">target: ≤ 7</div></div>
+    </div>
+    <div class="grid cols-2 mt-24">
+      <div class="card"><h3>Operating Theme</h3><p class="muted" style="font-style:italic">"${o.theme}"</p></div>
+      <div class="card"><h3>Highest Priority</h3><p style="color:var(--text-dim)">${o.priority}</p></div>
+      <div class="card"><h3>Current Bottleneck</h3><p style="color:var(--text-dim)">${o.bottleneck}</p></div>
+      <div class="card"><h3>Current Risk</h3><p style="color:var(--text-dim)">${o.risk}</p></div>
+      <div class="card" style="grid-column:1/-1;"><h3>Current Unlock</h3><p style="color:var(--text-dim)">${o.unlock}</p></div>
+    </div>
+    <h3 class="mt-24" style="font-family:var(--serif);font-size:15px;">System Status</h3>
+    <div class="grid cols-3" style="margin-top:10px;">
+      ${o.statuses.map(s=>`<div class="card flex-between"><span>${s.label}</span>${badge(s.state, s.state)}</div>`).join("")}
+    </div>
+  `;
+}
+
+/* ---------------- PHILOSOPHY ---------------- */
+function renderPhilosophy(panel){
+  const ph = DATA.philosophy;
+  panel.innerHTML = `
+    <span class="eyebrow">Core Philosophy</span>
+    <h2 class="section-title">The Chain</h2>
+    <p class="section-sub">Source → Stewardship → Foundation House Capital → Atlas → Flow State Macro → Assets → Impact. Every decision flows down this chain; nothing skips a layer.</p>
+    <div class="stack" id="chainWrap"></div>
+    <div class="final-instruction">
+      <span class="fi-label">Final Instruction — Design Law</span>
+      <p>${ph.finalInstruction}</p>
+    </div>
+    <p class="small muted" style="max-width:780px;margin-top:12px;">${ph.designConsequence}</p>
+  `;
+  const wrap = panel.querySelector("#chainWrap");
+  ph.chain.forEach((layer,i)=>{
+    wrap.appendChild(el("div","stack-layer", `<span class="layer-num">${layer.n}</span><h4>${layer.title}</h4><p>${layer.desc}</p>`));
+    if(i < ph.chain.length-1) wrap.appendChild(el("div","stack-arrow","↓"));
+  });
+}
+
+/* ---------------- PRIORITIES ---------------- */
+function renderPriorities(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">The Only Three Things</span>
+    <h2 class="section-title">Executive Priorities</h2>
+    <p class="section-sub">Everything else in this OS supports these three. If a week's effort didn't move one of them, the week didn't move the mission. Checkboxes persist on this device.</p>
+    <div id="prioWrap"></div>
+  `;
+  const wrap = panel.querySelector("#prioWrap");
+  DATA.priorities.forEach((p,pi)=>{
+    const card = el("div","priority-card");
+    let html = `<div class="p-num">EXECUTIVE PRIORITY ${pi+1}</div><h3>${p.name}</h3><div class="p-why">${p.why}</div>`;
+    p.items.forEach(it=>{
+      html += `<label class="check-item" style="cursor:pointer;">
+        <input type="checkbox" data-lskey="${it.key}">
+        <div><div class="ci-text">${it.text}</div><div class="ci-note">${it.note}</div></div>
+      </label>`;
+    });
+    html += `<div class="small muted" style="margin-top:10px;font-family:var(--mono);">NEXT UNLOCK → ${p.nextUnlock}</div>`;
+    card.innerHTML = html;
+    wrap.appendChild(card);
+  });
+  bindPersistentCheckboxes(panel);
+}
+
+/* ---------------- DEEP WORK ---------------- */
+function renderDeepWork(panel){
+  const dw = DATA.deepWork;
+  const wk = weekKey();
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  let rows = "";
+  dw.blocks.forEach((b,bi)=>{
+    rows += `<tr><td>${b.label} <span class="dw-mins">${b.minutes} min</span></td>`;
+    days.forEach((d,di)=>{
+      rows += `<td><input type="checkbox" data-lskey="dw_${wk}_${bi}_${di}"></td>`;
+    });
+    rows += `</tr>`;
+  });
+  panel.innerHTML = `
+    <span class="eyebrow">Capability Building — Executive Priority 3</span>
+    <h2 class="section-title">Daily Deep Work Grid <span class="small" style="font-family:var(--mono);color:var(--muted);">· ${wk}</span></h2>
+    <p class="section-sub">${dw.note}</p>
+    <div class="card">
+      <table class="dw-table">
+        <thead><tr><th>Block</th>${days.map(d=>`<th>${d}</th>`).join("")}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="flex-between" style="margin-top:14px;">
+        <span class="small muted" id="dwSummary"></span>
+        <span class="small muted" style="font-family:var(--mono);">Target: 24.5 hrs / week</span>
+      </div>
+    </div>
+  `;
+  bindPersistentCheckboxes(panel);
+  const update = ()=>{
+    let mins = 0, boxes = panel.querySelectorAll(".dw-table input[type=checkbox]");
+    boxes.forEach((cb,i)=>{ if(cb.checked){ const bi = Math.floor(i/7); mins += dw.blocks[bi].minutes; } });
+    panel.querySelector("#dwSummary").textContent = "This week: " + (mins/60).toFixed(1) + " hrs completed";
+  };
+  panel.querySelectorAll(".dw-table input").forEach(cb=>cb.addEventListener("change", update));
+  update();
+}
+
+/* ---------------- GATES ---------------- */
+function renderGates(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">Capability Gates</span>
+    <h2 class="section-title">Phase Gate System</h2>
+    <p class="section-sub">Each gate must substantially unlock before the next becomes the priority. Gate I is where the ax meets the tree.</p>
+    <div class="gate-ladder" id="gateLadder"></div>
+  `;
+  const ladder = panel.querySelector("#gateLadder");
+  DATA.gates.forEach(g=>{
+    const rung = el("div","gate-rung "+g.status);
+    rung.innerHTML = `
+      <div class="gate-seal">${g.num}</div>
+      <div class="gate-content">
+        <div class="flex-between">
+          <h4>Gate ${g.num} — ${g.name}</h4>
+          ${badge(g.status==="complete"?"ok":g.status==="active"?"warn":"idle", g.status)}
+        </div>
+        <div class="gate-meta">${g.progress}% complete</div>
+        ${progressBar(g.progress)}
+        <details class="collapse" style="margin-top:10px;">
+          <summary>Details &amp; Unlock Criteria</summary>
+          <div class="collapse-body">
+            <p class="muted small">${g.desc}</p>
+            <div class="grid cols-2">
+              <div><span class="eyebrow">Completed</span><ul class="field-list">${g.done.map(d=>`<li>${d}</li>`).join("") || '<li class="muted">None yet</li>'}</ul></div>
+              <div><span class="eyebrow">Missing</span><ul class="field-list">${g.missing.map(d=>`<li>${d}</li>`).join("") || '<li class="muted">None — gate clear</li>'}</ul></div>
+            </div>
+            <span class="eyebrow" style="margin-top:10px;display:block;">Next Actions</span>
+            <ul class="field-list">${g.next.map(d=>`<li>${d}</li>`).join("")}</ul>
+            <span class="eyebrow" style="margin-top:10px;display:block;">Risks</span>
+            <ul class="field-list">${g.risks.map(d=>`<li>${d}</li>`).join("") || '<li class="muted">None flagged</li>'}</ul>
+            <div class="field-block" style="margin-top:12px;">
+              <label class="title">Notes (saved locally)</label>
+              <textarea rows="3" data-lskey="gate_notes_${g.id}" placeholder="Running notes for this gate..."></textarea>
+            </div>
+          </div>
+        </details>
+      </div>`;
+    ladder.appendChild(rung);
+  });
+  bindPersistentTextareas(panel);
+}
+
+/* ---------------- EXECUTIVE SYSTEMS ---------------- */
+function renderSystems(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">Governance Organs</span>
+    <h2 class="section-title">Executive Systems</h2>
+    <p class="section-sub">The organs of the operating system: KPIs, Anti-Goals, the Decision Journal, the Opportunity Pipeline, Relationship Capital, the Knowledge Vault, the Weekly CEO Letter, and the Return Matrix.</p>
+    <div class="subtabbar" id="sysTabs"></div>
+    <div id="sysPanels"></div>
+  `;
+  const defs = [
+    {id:"kpi", label:"Executive KPIs", render: c=>{
+      c.innerHTML = `<div class="table-scroll"><table class="matrix"><thead><tr><th>KPI</th><th>Current</th><th>Target</th><th>Cadence</th></tr></thead><tbody>${DATA.kpis.map(k=>`<tr><td><strong>${k.name}</strong></td><td>${k.current}</td><td>${k.target}</td><td>${k.cadence}</td></tr>`).join("")}</tbody></table></div>`;
+    }},
+    {id:"anti", label:"Anti-Goals", render: c=>{
+      c.innerHTML = `<p class="small muted" style="max-width:760px;">What we refuse to do. Reviewed quarterly. Violating an anti-goal is a Decision Journal entry, minimum.</p>
+      <div class="table-scroll"><table class="matrix"><thead><tr><th>Anti-Goal</th><th>Why It Exists</th></tr></thead><tbody>${DATA.antiGoals.map(a=>`<tr><td><strong>${a.rule}</strong></td><td>${a.why}</td></tr>`).join("")}</tbody></table></div>`;
+    }},
+    {id:"dj", label:"Decision Journal", render: c=>{
+      c.appendChild(el("p","small muted","Every meaningful decision gets an entry: what was decided, the reasoning at the time, the expected outcome, and a review date. Reviewed against reality — this is how judgment improves measurably. New entries are saved on this device; use Copy as Markdown to commit them."));
+      renderEntryLog(c, {
+        lsKey:"decision_journal", seeds:DATA.decisionJournalSeeds, headField:"decision",
+        fields:[{key:"date",label:"Date (YYYY-MM-DD)"},{key:"decision",label:"Decision"},{key:"reasoning",label:"Reasoning at the time",wide:true},{key:"expected",label:"Expected outcome",wide:true},{key:"review",label:"Review date"}],
+        mdTitle:"Decision Journal", mdPath:"/decision-journal/"+new Date().toISOString().slice(0,7)+".md"
+      });
+    }},
+    {id:"opp", label:"Opportunity Pipeline", render: c=>{
+      renderEntryLog(c, {
+        lsKey:"opportunities", seeds:DATA.opportunitySeeds, headField:"opportunity",
+        fields:[{key:"date",label:"Date"},{key:"opportunity",label:"Opportunity"},{key:"source",label:"Source / who brought it"},{key:"stage",label:"Stage"},{key:"next",label:"Next step",wide:true}],
+        mdTitle:"Opportunity Pipeline", mdPath:"/opportunities/"
+      });
+    }},
+    {id:"rel", label:"Relationship Capital", render: c=>{
+      c.appendChild(el("p","small muted","The people the mission depends on — command relationships, contacts, and the forming Stewardship Council seats. Relationships are stewarded, not networked."));
+      renderEntryLog(c, {
+        lsKey:"relationships", seeds:DATA.relationshipSeeds, headField:"person",
+        fields:[{key:"person",label:"Person"},{key:"role",label:"Role in the mission"},{key:"status",label:"Status"},{key:"next",label:"Next touch / action",wide:true}],
+        mdTitle:"Relationship Capital", mdPath:"/council/relationships.md"
+      });
+    }},
+    {id:"kv", label:"Knowledge Vault", render: c=>{
+      const kv = DATA.knowledgeVault;
+      c.innerHTML = `
+        <div class="grid cols-2">
+          <div class="card"><h3>Active Reading</h3>${kv.activeReading.map(b=>`<div class="field-row"><span class="k">${b.title}</span><span class="v">${b.domain} · ${b.status}</span></div>`).join("")}</div>
+          <div class="card"><h3>Capture Rule</h3><p class="muted small">${kv.captureRule}</p><p class="small" style="font-family:var(--mono);color:var(--gold-dim);margin-top:8px;">${kv.location}</p></div>
+        </div>
+        <div class="card mt-24"><h3>The Steward's Curriculum</h3><p class="muted small">${kv.curriculum}</p></div>`;
+    }},
+    {id:"ceo", label:"Weekly CEO Letter", render: c=>{
+      const wk = weekKey();
+      const cl = DATA.ceoLetter;
+      let html = `<p class="small muted" style="max-width:760px;">${cl.rule}</p><div class="card"><h3>Letter — Week ${wk}</h3>`;
+      cl.prompts.forEach((p,i)=>{
+        html += `<div class="field-block"><label class="title">${p}</label><textarea rows="2" data-lskey="ceo_${wk}_${i}"></textarea></div>`;
+      });
+      html += `</div>`;
+      c.innerHTML = html;
+      const btn = el("button","btn primary small","Copy Letter as Markdown");
+      btn.style.marginTop = "10px";
+      btn.addEventListener("click", ()=>{
+        let md = `# CEO Letter — ${wk}\n\n_Foundation House Capital · written to the future board_\n\n`;
+        cl.prompts.forEach((p,i)=>{ md += `## ${p}\n\n${lsGet("ceo_"+wk+"_"+i,"") || "_—_"}\n\n`; });
+        md += `\nCommit to: /ceo-letters/${wk}.md\n`;
+        copyToClipboard(md, btn);
+      });
+      c.appendChild(btn);
+      bindPersistentTextareas(c);
+    }},
+    {id:"rm", label:"Return Matrix", render: c=>{
+      c.innerHTML = `<div class="table-scroll"><table class="matrix"><thead><tr><th>Domain</th><th>Current Investment</th><th>Expected Return</th><th>Risk</th><th>Horizon</th><th>Next Action</th><th>Compounding Mechanism</th></tr></thead><tbody>${DATA.returnMatrix.map(r=>`<tr><td><strong style="color:var(--gold-soft)">${r.domain}</strong></td><td>${r.investment}</td><td>${r.expected}</td><td>${r.risk}</td><td>${r.horizon}</td><td>${r.action}</td><td>${r.compounding}</td></tr>`).join("")}</tbody></table></div>`;
+    }},
+  ];
+  const tabs = panel.querySelector("#sysTabs");
+  const panes = panel.querySelector("#sysPanels");
+  defs.forEach((d,i)=>{
+    const btn = el("button","subtab-btn"+(i===0?" active":""), d.label);
+    btn.addEventListener("click", ()=>{
+      tabs.querySelectorAll(".subtab-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      panes.querySelectorAll(".subtab-panel").forEach(sp=>sp.classList.remove("active"));
+      document.getElementById("sys-"+d.id).classList.add("active");
+    });
+    tabs.appendChild(btn);
+    const sp = el("div","subtab-panel"+(i===0?" active":"")); sp.id = "sys-"+d.id;
+    d.render(sp);
+    panes.appendChild(sp);
+  });
+}
+
+/* ---------------- WRONG ABOUT ---------------- */
+function renderWrongAbout(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">Learning Through Error — Permanent Section</span>
+    <h2 class="section-title">Things I Was Wrong About</h2>
+    <p class="section-sub">Meaningful assumptions, predictions, theses, and strategic beliefs that later proved incomplete or incorrect. Reviewed regularly — not to criticize the past, but to accelerate wisdom. This ledger preserves lessons, not ego. Growth is measured by improved judgment over time.</p>
+    <div id="wrongWrap"></div>
+  `;
+  renderEntryLog(panel.querySelector("#wrongWrap"), {
+    lsKey:"wrong_about", seeds:DATA.wrongAboutSeeds, headField:"belief",
+    fields:[{key:"date",label:"Date"},{key:"belief",label:"What I believed"},{key:"reality",label:"What was actually true",wide:true},{key:"lesson",label:"The lesson extracted",wide:true}],
+    mdTitle:"Things I Was Wrong About", mdPath:"/wrong-about/WRONG_ABOUT.md"
+  });
+}
+
+/* ---------------- WEEKLY REVIEW ---------------- */
+function renderWeeklyReview(panel){
+  const wr = DATA.weeklyReview;
+  panel.innerHTML = `
+    <span class="eyebrow">The Immune System</span>
+    <h2 class="section-title">Weekly Executive Review</h2>
+    <p class="section-sub">Run every Sunday alongside the intelligence pull. Feeds the CEO Letter, the Decision Journal, and the Wrong About ledger. Saved automatically on this device.</p>
+    <div class="grid cols-2">
+      <div class="card"><h3>Checklist</h3>${wr.checks.map(c=>`<label class="checkline"><input type="checkbox" data-lskey="${c.key}">${c.label}</label>`).join("")}</div>
+      <div class="card"><h3>Reflection</h3>${wr.prompts.map(p=>`<div class="field-block"><label class="title">${p.q}</label><textarea rows="2" data-lskey="${p.key}"></textarea></div>`).join("")}</div>
+    </div>
+  `;
+  bindPersistentCheckboxes(panel);
+  bindPersistentTextareas(panel);
+}
+
+/* ---------------- INTELLIGENCE ---------------- */
+function renderIntelligence(panel){
+  const s = DATA.signalNoise;
+  panel.innerHTML = `
+    <span class="eyebrow">ATLAS Filter + Weekly Programs</span>
+    <h2 class="section-title">Intelligence</h2>
+    <p class="section-sub">Signal vs noise from the Sunday pull, plus the status of every recurring intelligence program. Report → Decision → Action: what did it say, what does it change, is it signal, where does it belong?</p>
+    <div class="subtabbar" id="intelTabs"></div>
+    <div id="intelPanels"></div>
+  `;
+  const defs = [
+    {id:"sn", label:"Signal vs Noise", render:c=>{
+      c.innerHTML = `<div class="grid cols-2">
+        <div class="card"><h3>Signals</h3><ul class="field-list">${s.signals.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="card"><h3>Noise</h3><ul class="field-list">${s.noise.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="card"><h3>Watchlist</h3><ul class="field-list">${s.watchlist.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="card"><h3>Decision Required</h3><ul class="field-list">${s.decisionRequired.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="card"><h3>No-Action Zone</h3><ul class="field-list">${s.noActionZone.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+        <div class="card"><h3>Research Queue</h3><ul class="field-list">${s.researchQueue.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      </div>`;
+    }},
+    {id:"rep", label:"Weekly Programs", render:c=>{
+      c.innerHTML = `<div class="table-scroll"><table class="matrix"><thead><tr><th>Report</th><th>Purpose</th><th>Frequency</th><th>GitHub</th><th>Drive</th><th>Last Gen</th><th>Key Signals</th><th>Actions</th><th>Changed Thesis?</th></tr></thead><tbody>${DATA.intelReports.map(r=>`<tr><td><strong>${r.name}</strong></td><td>${r.purpose}</td><td>${r.freq}${r.when!=="—"?" / "+r.when:""}</td><td>${badge(r.github==="active"?"ok":"idle", r.github)}</td><td>${badge(r.drive==="mirrored"?"ok":"idle", r.drive)}</td><td>${r.lastGen}</td><td>${r.signals}</td><td>${r.actions}</td><td>${r.changedThesis}</td></tr>`).join("")}</tbody></table></div>`;
+    }},
+  ];
+  const tabs = panel.querySelector("#intelTabs"), panes = panel.querySelector("#intelPanels");
+  defs.forEach((d,i)=>{
+    const btn = el("button","subtab-btn"+(i===0?" active":""), d.label);
+    btn.addEventListener("click", ()=>{
+      tabs.querySelectorAll(".subtab-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      panes.querySelectorAll(".subtab-panel").forEach(sp=>sp.classList.remove("active"));
+      document.getElementById("intel-"+d.id).classList.add("active");
+    });
+    tabs.appendChild(btn);
+    const sp = el("div","subtab-panel"+(i===0?" active":"")); sp.id = "intel-"+d.id;
+    d.render(sp); panes.appendChild(sp);
+  });
+}
+
+/* ---------------- COUNCIL ---------------- */
+function renderCouncil(panel){
+  const co = DATA.council;
+  panel.innerHTML = `
+    <span class="eyebrow">The Greatest Asset</span>
+    <h2 class="section-title">Stewardship Council</h2>
+    <p class="section-sub">${co.principle}</p>
+    <div class="card" style="margin-bottom:18px;">
+      <h3>Every advisor is evaluated on</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">
+        ${co.criteria.map(c=>`<span class="badge idle" style="font-size:11px;text-transform:none;letter-spacing:0;">${c}</span>`).join("")}
+      </div>
+    </div>
+    <div id="councilWrap"></div>
+  `;
+  const wrap = panel.querySelector("#councilWrap");
+  co.phases.forEach(ph=>{
+    const d = el("details","collapse");
+    if(ph.status==="active") d.open = true;
+    d.innerHTML = `
+      <summary>${ph.phase} ${badge(ph.status==="active"?"warn":"idle", ph.status)}</summary>
+      <div class="collapse-body">
+        <div class="table-scroll"><table class="matrix"><thead><tr><th>Seat</th><th>Status</th><th>Next Action</th></tr></thead>
+        <tbody>${ph.seats.map(s=>`<tr><td><strong>${s.role}</strong></td><td>${s.status}</td><td>${s.next}</td></tr>`).join("")}</tbody></table></div>
+      </div>`;
+    wrap.appendChild(d);
+  });
+}
+
+/* ---------------- PROJECTS ---------------- */
+function renderProjects(panel){
+  const keys = Object.keys(DATA.projects);
+  panel.innerHTML = `
+    <span class="eyebrow">Supporting Command Centers</span>
+    <h2 class="section-title">Projects &amp; Life Domains</h2>
+    <p class="section-sub">Status boards for every domain. These support the three executive priorities — they don't compete with them.</p>
+    <div class="subtabbar" id="projSubtabs"></div>
+    <div id="projPanels"></div>
+  `;
+  const subtabs = panel.querySelector("#projSubtabs"), projPanels = panel.querySelector("#projPanels");
+  keys.forEach((k,i)=>{
+    const p = DATA.projects[k];
+    const btn = el("button","subtab-btn"+(i===0?" active":""), p.icon+" — "+p.label);
+    btn.addEventListener("click", ()=>{
+      subtabs.querySelectorAll(".subtab-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      projPanels.querySelectorAll(".subtab-panel").forEach(sp=>sp.classList.remove("active"));
+      document.getElementById("proj-"+k).classList.add("active");
+    });
+    subtabs.appendChild(btn);
+    const sp = el("div","subtab-panel"+(i===0?" active":"")); sp.id = "proj-"+k;
+    sp.innerHTML = `<div class="card">${renderFieldRows(p.fields)}</div>`;
+    projPanels.appendChild(sp);
+  });
+}
+
+/* ---------------- DOCUMENTS ---------------- */
+function renderDocuments(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">Canonical Library</span>
+    <h2 class="section-title">Document Library Tracker</h2>
+    <div class="table-scroll"><table class="matrix">
+      <thead><tr><th>Document</th><th>Status</th><th>Location</th><th>Last Updated</th><th>Next Action</th></tr></thead>
+      <tbody>${DATA.documents.map(d=>{
+        const stateMap = {"canonical":"ok","active":"ok","draft":"warn","needs review":"warn","not started":"idle"};
+        return `<tr><td><strong>${d.name}</strong></td><td>${badge(stateMap[d.status]||"idle", d.status)}</td><td>${d.location}</td><td>${d.updated}</td><td>${d.next}</td></tr>`;
+      }).join("")}</tbody>
+    </table></div>
+  `;
+}
+
+/* ---------------- TIMELINE ---------------- */
+function renderTimeline(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">Horizon View</span>
+    <h2 class="section-title">Timeline</h2>
+    <p class="section-sub">From this week to the age-50 vision. Checkpoints, not stone.</p>
+    <div class="timeline" id="tlWrap"></div>
+  `;
+  const wrap = panel.querySelector("#tlWrap");
+  DATA.timeline.forEach(t=>{
+    wrap.appendChild(el("div","tl-row", `<div class="tl-label">${t.label}</div><h4>${t.title}</h4><ul>${t.items.map(i=>`<li>${i}</li>`).join("")}</ul>`));
+  });
+}
+
+/* ---------------- RISKS ---------------- */
+function renderRisks(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">Defensive Layer</span>
+    <h2 class="section-title">Risk Register</h2>
+    <p class="section-sub">Named risks with early-warning signs and pre-committed countermeasures. The first risk on the list is the one this whole v2 exists to fight.</p>
+    <div class="table-scroll"><table class="matrix">
+      <thead><tr><th>Risk</th><th>Severity</th><th>Probability</th><th>Early Warning Sign</th><th>Countermeasure</th></tr></thead>
+      <tbody>${DATA.risks.map(r=>`<tr><td><strong>${r.name}</strong></td><td><span class="heat ${r.severity}">${r.severity}</span></td><td><span class="heat ${r.prob}">${r.prob}</span></td><td>${r.warning}</td><td>${r.counter}</td></tr>`).join("")}</tbody>
+    </table></div>
+  `;
+}
+
+/* ---------------- REPO & DRIVE ---------------- */
+function renderRepo(panel){
+  const g = DATA.repo;
+  panel.innerHTML = `
+    <span class="eyebrow">Auditability Infrastructure</span>
+    <h2 class="section-title">GitHub &amp; Drive Architecture</h2>
+    <p class="section-sub">GitHub is truth. Drive is presentation. Every meaningful decision produces a committed artifact — if it isn't in the repo, it doesn't exist.</p>
+    <div class="grid cols-2">
+      <div class="card">${renderFieldRows({
+        "Repository": g.repoName,
+        "Last commit": g.lastCommit,
+        "Dashboard version": g.dashboardVersion,
+        "Weekly commit goal": g.weeklyGoal,
+      })}</div>
+      <div class="card"><h3>Files to Commit</h3><ul class="field-list">${g.filesToCommit.map(f=>`<li>${f}</li>`).join("")}</ul></div>
+    </div>
+    <div class="card mt-24"><h3>Commit Rules</h3><ul class="field-list">${g.commitRules.map(r=>`<li>${r}</li>`).join("")}</ul></div>
+    <div class="grid cols-2 mt-24">
+      <div><span class="eyebrow">GitHub Structure (truth)</span><pre class="tree">${esc(g.githubStructure)}</pre></div>
+      <div><span class="eyebrow">Drive Structure (presentation)</span><pre class="tree">${esc(g.driveStructure)}</pre></div>
+    </div>
+    <div class="card mt-24"><h3>Backlog</h3><ul class="field-list">${g.backlog.map(b=>`<li>${b}</li>`).join("")}</ul></div>
+  `;
+}
+
+/* ---------------- SOVEREIGN ---------------- */
+function renderSovereign(panel){
+  const fr = DATA.sovereignBases.find(s=>s.frontrunner);
+  panel.innerHTML = `
+    <span class="eyebrow">Global Optionality</span>
+    <h2 class="section-title">Sovereign Base Tracker</h2>
+    <p class="section-sub">Multi-jurisdiction research for the long-term base and capital-vehicle strategy. Serious diligence happens with professionals (Council Phase 2) — this tracker keeps the research honest until then.</p>
+    <div class="card" style="margin-bottom:18px;">
+      <h3>Current Front-Runner</h3>
+      <p style="color:var(--gold-soft);font-family:var(--serif);font-size:16px;">${fr.country} — ${fr.role}</p>
+    </div>
+    <div id="sovWrap"></div>
+  `;
+  const wrap = panel.querySelector("#sovWrap");
+  DATA.sovereignBases.forEach(s=>{
+    const d = el("details","collapse");
+    d.innerHTML = `
+      <summary>${s.country} ${s.frontrunner?badge("ok","front-runner"):""}</summary>
+      <div class="collapse-body">${renderFieldRows({
+        "Role in strategy": s.role, "Residency pathway": s.residency, "Citizenship timeline": s.citizenship,
+        "Tax treatment": s.tax, "Banking access": s.banking, "Legal stability": s.legal, "Property ownership": s.property,
+        "Root-building potential": s.roots, "Language/culture fit": s.culture, "Timezone/US access": s.timezone,
+        "Safety/security": s.safety, "Climate/geography": s.climate, "Business formation": s.business,
+        "Capital controls": s.capitalControls, "Pros": s.pros, "Cons": s.cons, "Current status": s.status, "Next research action": s.next
+      })}</div>`;
+    wrap.appendChild(d);
+  });
+}
+
+/* ---------------- AI TEAM ---------------- */
+function renderAITeam(panel){
+  panel.innerHTML = `
+    <span class="eyebrow">Operating Team</span>
+    <h2 class="section-title">AI Team / Tool Stack</h2>
+    <div class="card" style="margin-bottom:18px;border-color:var(--gold-dim);">
+      <h3 style="color:var(--gold-soft);">⚠ Tool Sprawl Warning (Anti-Goal)</h3>
+      <p class="muted">Before adding any new tool: can ChatGPT, Claude, Perplexity, GitHub, or Drive already do this? A new tool is only justified if it closes a gap none of the five can close — otherwise it fragments the source of truth.</p>
+    </div>
+    <div class="table-scroll"><table class="matrix">
+      <thead><tr><th>Tool</th><th>Primary Role</th><th>Best Use Case</th><th>Current Projects</th><th>Output</th><th>Overuse Risk</th><th>Quality Check</th><th>Next Upgrade</th></tr></thead>
+      <tbody>${DATA.aiTeam.map(t=>`<tr><td><strong>${t.tool}</strong></td><td>${t.role}</td><td>${t.bestUse}</td><td>${t.projects}</td><td>${t.output}</td><td>${t.risk}</td><td>${t.verify}</td><td>${t.upgrade}</td></tr>`).join("")}</tbody>
+    </table></div>
+  `;
+}
+
+/* ---------------- export / print ---------------- */
+function exportSnapshot(){
+  const snap = {};
+  for(let i=0;i<localStorage.length;i++){
+    const k = localStorage.key(i);
+    if(k.startsWith(LS_PREFIX)) snap[k.replace(LS_PREFIX,"")] = localStorage.getItem(k);
+  }
+  const payload = { exportedAt: new Date().toISOString(), version: DATA.meta ? DATA.meta.version : "2.0", overview: DATA.overview, editableFields: snap };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `fhc-eos-snapshot-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* ---------------- init ---------------- */
+(async function init(){
+  await loadData();
+  if(!DATA){
+    document.getElementById("panels").innerHTML = "<p style='color:var(--red);padding:40px;'>No data available: data.json could not be fetched and no fallback is injected. Run sync_data.py, or serve this folder with a local server.</p>";
+    return;
+  }
+  buildShell();
+  renderAll();
+  const note = document.getElementById("dataSourceNote");
+  if(note) note.textContent = "Data source: " + dataSource;
+  document.getElementById("exportBtn").addEventListener("click", exportSnapshot);
+  document.getElementById("printBtn").addEventListener("click", ()=> window.print());
+})();
+</script>
+</body>
+</html>
