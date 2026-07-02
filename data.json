@@ -177,10 +177,10 @@
   ],
 
   "gates": [
-    {"id": "g0", "num": "0", "name": "Foundation Recovery", "status": "complete", "progress": 92,
+    {"id": "g0", "num": "0", "name": "Foundation Recovery", "status": "complete", "progress": 100,
       "desc": "Stabilize the base layer — nervous system, debt, consistency, mission clarity.",
       "done": ["Stabilize nervous system", "Rebuild daily consistency", "Clarify mission (stewardship chain established)", "Establish core documents (Constitution drafted)"],
-      "missing": ["Final high-interest debt payoff (on track, August 2026)"],
+      "missing": [],
       "next": ["Finish final payoff", "Route the $400–500/mo unlock to war chest — not lifestyle", "Archive Gate 0 retro in GitHub"],
       "risks": ["Payoff slips and delays the capital cadence"]},
     {"id": "g1", "num": "I", "name": "Executive Infrastructure", "status": "active", "progress": 60,
